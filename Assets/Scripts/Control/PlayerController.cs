@@ -8,11 +8,12 @@ namespace RPG.Control {
   private Camera mainCamera;
 
   private Mover mover;
+  private Fighter fighter;
 
   private void Awake() {
     mainCamera = Camera.main;
     mover = GetComponent<Mover>();
-
+    fighter = GetComponent<Fighter>();
   }
   
   private void Update() {
@@ -36,6 +37,8 @@ namespace RPG.Control {
       }
       return true;
     }
+
+
     return false;
   }
 
@@ -44,7 +47,7 @@ namespace RPG.Control {
 
     if (Physics.Raycast(GetMouseRay(), out hit)) {
       if (Input.GetMouseButton(0)) {
-        mover.MoveTo(hit.point);
+        mover.StartMoveAction(hit.point);
       }
       return true;
     }
