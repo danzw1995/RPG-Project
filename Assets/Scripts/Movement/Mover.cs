@@ -47,7 +47,6 @@ namespace RPG.Movement {
     }
 
     public void Cancel() {
-      print("Cancel Movement");
       navMeshAgent.isStopped = true;
     }
 
