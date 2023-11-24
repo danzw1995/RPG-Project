@@ -6,6 +6,7 @@ namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour, IAction {
       [SerializeField] private float weaponRange = 2f;
+      [SerializeField] private float weaponDamage = 5f;
       [SerializeField] private float timeBetweenAttacks = 1f;
 
       private float timeSinceLastAttack = 0f;
@@ -44,6 +45,10 @@ namespace RPG.Combat
 
       // Animation Event
       private void Hit() {
+        Health health = target.GetComponent<Health>();
+        if (health != null) {
+          health.TakeDamage(weaponDamage);
+        }
 
       }
 
