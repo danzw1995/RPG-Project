@@ -14,6 +14,11 @@ namespace RPG.Control
 
     // 怀疑时间
     [SerializeField] private float suspicionTime = 3f;
+    [SerializeField] private float waypointDwellTime = 3f;
+
+    [SerializeField] private PatrolPath patrolPath;
+
+    [SerializeField] private float waypointTolerance = 1f;
 
     private GameObject player;
     private Fighter fighter;
@@ -25,6 +30,11 @@ namespace RPG.Control
     private Vector3 guardPosition;
 
     private float timeSinceLastSawPlayer = Mathf.Infinity;
+    private float timeSinceArrivedWaypoint = Mathf.Infinity;
+
+    private bool isPatrol = true;
+
+    private int currentWaypointIndex = 0;
 
     private void Start()
     {
@@ -43,7 +53,6 @@ namespace RPG.Control
 
       if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
       {
-        timeSinceLastSawPlayer = 0;
         AttackBehavior();
       }
       else if (timeSinceLastSawPlayer < suspicionTime)
@@ -52,14 +61,15 @@ namespace RPG.Control
       }
       else
       {
-        GuardBehavior();
+        PatrolBehavior();
       }
-
-      timeSinceLastSawPlayer += Time.deltaTime;
+      UpdateTimer();
     }
 
     private void AttackBehavior()
     {
+      timeSinceLastSawPlayer = 0;
+
       fighter.Attack(player);
     }
 
@@ -69,10 +79,48 @@ namespace RPG.Control
 
     }
 
-    private void GuardBehavior()
+    private void PatrolBehavior()
     {
-      mover.StartMoveAction(guardPosition);
+      Vector3 nextPosition = guardPosition;
 
+      if (patrolPath != null)
+      {
+        if (AtWaypoint())
+        {
+          timeSinceArrivedWaypoint = 0;
+
+          CycleWayPoint();
+        }
+        nextPosition = GetCurrentWayPosition();
+      }
+      if (timeSinceArrivedWaypoint > waypointDwellTime)
+      {
+
+        mover.StartMoveAction(nextPosition);
+      }
+
+    }
+
+    private void UpdateTimer()
+    {
+      timeSinceLastSawPlayer += Time.deltaTime;
+      timeSinceArrivedWaypoint += Time.deltaTime;
+    }
+
+    private bool AtWaypoint()
+    {
+      float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWayPosition());
+      return distanceToWaypoint < waypointTolerance;
+    }
+
+    private void CycleWayPoint()
+    {
+      currentWaypointIndex = patrolPath.GetNextIndex(currentWaypointIndex);
+    }
+
+    private Vector3 GetCurrentWayPosition()
+    {
+      return patrolPath.GetWaypoint(currentWaypointIndex);
     }
 
     private bool InAttackRangeOfPlayer()
