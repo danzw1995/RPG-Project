@@ -29,7 +29,8 @@ namespace RPG.Control {
     foreach (RaycastHit hit in hits)
     {
       CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-      if (target == null) {
+      // 判断目标能否被攻击
+      if (!fighter.CanAttack(target)) {
         continue;
       }
       if (Input.GetMouseButtonDown(0)) {

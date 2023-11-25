@@ -5,10 +5,13 @@ using RPG.Core;
 namespace RPG.Combat 
 {
     public class Fighter : MonoBehaviour, IAction {
+      // 武器的使用范围
       [SerializeField] private float weaponRange = 2f;
+      // 武器伤害值
       [SerializeField] private float weaponDamage = 5f;
+      // 攻击间隔时间
       [SerializeField] private float timeBetweenAttacks = 1f;
-
+      // 上次攻击时间
       private float timeSinceLastAttack = 0f;
       private Health target;
       private Animator animator;
@@ -41,9 +44,14 @@ namespace RPG.Combat
           if (target != null) {
             transform.LookAt(target.transform);
           }
-          animator.SetTrigger("attack");
+          AttackTrigger();
           timeSinceLastAttack = 0f;
         }
+      }
+
+      private void AttackTrigger() {
+        animator.ResetTrigger("stopAttack");
+        animator.SetTrigger("attack");
       }
 
       // Animation Event
@@ -53,14 +61,29 @@ namespace RPG.Combat
         }
       }
 
+      // 判断目标能否被攻击
+      public bool CanAttack(CombatTarget combatTarget) {
+        if (combatTarget == null) {
+          return false;
+        }
+        Health health = combatTarget.GetComponent<Health>();
+        return health != null && !health.IsDead();
+      }
+
+      // 攻击
       public void Attack (CombatTarget combatTarget) {
         actionScheduler.StartAction(this);
         target = combatTarget.GetComponent<Health>();
       }
 
       public void Cancel() {
-        animator.SetTrigger("stopAttack");
         target = null;
+        StopAttackTrigger();
+      }
+
+      private void StopAttackTrigger() {
+        animator.ResetTrigger("attack");
+        animator.SetTrigger("stopAttack");
       }
     } 
 }
