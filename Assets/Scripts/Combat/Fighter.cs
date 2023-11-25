@@ -33,15 +33,15 @@ namespace RPG.Combat
       timeSinceLastAttack += Time.deltaTime;
       if (target == null) return;
       if (target.IsDead()) return;
-      // 计算当前位置与target之间的距离,距离小于weaponRange时停止移动     
-      if (Vector3.Distance(transform.position, target.transform.position) < weaponRange)
+      // 计算当前位置与target之间的距离,距离大于weaponRange时移动  
+      if (!GetIsInRange())
       {
-        mover.Cancel();
-        AttackBehavior();
+        mover.MoveTo(target.transform.position);
       }
       else
       {
-        mover.MoveTo(target.transform.position);
+        mover.Cancel();
+        AttackBehavior();
       }
     }
 
@@ -71,6 +71,11 @@ namespace RPG.Combat
       {
         target.TakeDamage(weaponDamage);
       }
+    }
+
+    private bool GetIsInRange()
+    {
+      return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
     }
 
     // 判断目标能否被攻击
