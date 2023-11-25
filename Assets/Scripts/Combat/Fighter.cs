@@ -10,7 +10,7 @@ namespace RPG.Combat
       [SerializeField] private float timeBetweenAttacks = 1f;
 
       private float timeSinceLastAttack = 0f;
-      private Transform target;
+      private Health target;
       private Animator animator;
 
       private Mover mover;
@@ -25,16 +25,16 @@ namespace RPG.Combat
 
       private void Update() {
         timeSinceLastAttack += Time.deltaTime;
-        if (target != null) {
-          // 计算当前位置与target之间的距离,距离小于weaponRange时停止移动     
-          if (Vector3.Distance(transform.position, target.position) <  weaponRange) {
-            mover.Cancel();
-            AttackBehavior();
-          } else {
-            mover.MoveTo(target.position);
-          }
+        if (target == null) return;
+        if (target.IsDead()) return;
+        // 计算当前位置与target之间的距离,距离小于weaponRange时停止移动     
+        if (Vector3.Distance(transform.position, target.transform.position) <  weaponRange) {
+          mover.Cancel();
+          AttackBehavior();
+        } else {
+          mover.MoveTo(target.transform.position);
         }
-      }
+    }
 
       private void AttackBehavior() {
         if (timeSinceLastAttack >= timeBetweenAttacks) {
@@ -45,19 +45,18 @@ namespace RPG.Combat
 
       // Animation Event
       private void Hit() {
-        Health health = target.GetComponent<Health>();
-        if (health != null) {
-          health.TakeDamage(weaponDamage);
+        if (target != null) {
+          target.TakeDamage(weaponDamage);
         }
-
       }
 
       public void Attack (CombatTarget combatTarget) {
         actionScheduler.StartAction(this);
-        target = combatTarget.transform;
+        target = combatTarget.GetComponent<Health>();
       }
 
       public void Cancel() {
+        animator.SetTrigger("stopAttack");
         target = null;
       }
     } 
