@@ -13,7 +13,7 @@ namespace RPG.Combat
     // 攻击间隔时间
     [SerializeField] private float timeBetweenAttacks = 1f;
     // 上次攻击时间
-    private float timeSinceLastAttack = 0f;
+    private float timeSinceLastAttack = Mathf.Infinity;
     private Health target;
     private Animator animator;
 
