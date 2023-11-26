@@ -14,12 +14,17 @@ namespace RPG.Control
 
     // 怀疑时间
     [SerializeField] private float suspicionTime = 3f;
+
+    // 导航点停留时间
     [SerializeField] private float waypointDwellTime = 3f;
 
+    // 巡逻路径
     [SerializeField] private PatrolPath patrolPath;
 
+    // 导航点公差
     [SerializeField] private float waypointTolerance = 1f;
 
+    // 巡逻速度分数比例
     [SerializeField] private float patrolSpeedFraction = 0.2f;
 
     private GameObject player;
