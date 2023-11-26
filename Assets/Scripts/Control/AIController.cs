@@ -19,7 +19,7 @@ namespace RPG.Control
     [SerializeField] private float waypointDwellTime = 3f;
 
     // 巡逻路径
-    [SerializeField] private PatrolPath patrolPath;
+    [SerializeField] private PatrolPath patrolPath = null;
 
     // 导航点公差
     [SerializeField] private float waypointTolerance = 1f;
@@ -38,8 +38,6 @@ namespace RPG.Control
 
     private float timeSinceLastSawPlayer = Mathf.Infinity;
     private float timeSinceArrivedWaypoint = Mathf.Infinity;
-
-    private bool isPatrol = true;
 
     private int currentWaypointIndex = 0;
 
