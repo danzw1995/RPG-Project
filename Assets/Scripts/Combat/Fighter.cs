@@ -36,7 +36,7 @@ namespace RPG.Combat
       // 计算当前位置与target之间的距离,距离大于weaponRange时移动  
       if (!GetIsInRange())
       {
-        mover.MoveTo(target.transform.position);
+        mover.MoveTo(target.transform.position, 1f);
       }
       else
       {
