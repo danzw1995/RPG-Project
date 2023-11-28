@@ -5492,7 +5492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 2140218016}
-  m_PathPosition: 1
+  m_PathPosition: 0
   m_PositionUnits: 2
   m_PathOffset: {x: -5.3230066, y: 14.687003, z: -23.807966}
   m_XDamping: 0
@@ -6238,7 +6238,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049879158}
-  m_LocalRotation: {x: 0.27933246, y: 0.5472347, z: -0.20030399, w: 0.76314217}
+  m_LocalRotation: {x: 0.23159906, y: -0.013101513, z: 0.0031194012, w: 0.9727181}
   m_LocalPosition: {x: -8.7, y: 11, z: -19.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6718,12 +6718,52 @@ PrefabInstance:
     - target: {fileID: 6795246644418775948, guid: c921a546b08b69d4fb8803ddad154a1a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.682469
+      value: 3.6600006
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795246644418775948, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.2069063
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795246644418775948, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -101
       objectReference: {fileID: 0}
     - target: {fileID: 6795246645985277797, guid: c921a546b08b69d4fb8803ddad154a1a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.682469
+      value: 3.6600006
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795246645985277797, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.2069063
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795246645985277797, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -101
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795246645102745853, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_ScreenX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795246645102745853, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_ScreenY
+      value: 0.7526644
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795246645102745853, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_CameraDistance
+      value: 28.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795246645102745853, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_DeadZoneHeight
+      value: 0.218397
       objectReference: {fileID: 0}
     - target: {fileID: 4092500545671148366, guid: c921a546b08b69d4fb8803ddad154a1a,
         type: 3}
