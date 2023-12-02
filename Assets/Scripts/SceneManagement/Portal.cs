@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using RPG.Saving;
 
 namespace RPG.SceneManagement
 {
@@ -51,14 +52,23 @@ namespace RPG.SceneManagement
 
       Fader fader = FindObjectOfType<Fader>();
 
+      // 场景淡出
       yield return fader.FadeOut(fadeOutTime);
 
+      SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+      savingWrapper.Save();
+
+      // 加载场景
       yield return SceneManager.LoadSceneAsync(sceneToLoad);
+      savingWrapper.Load();
       Portal otherPortal = GetOtherPortal();
 
       UpdatePlayer(otherPortal);
+      savingWrapper.Save();
 
       yield return new WaitForSeconds(fadeWaitTime);
+
+      // 场景淡入
       yield return fader.FadeIn(fadeInTime);
 
       print("Scene Loaded");
@@ -70,8 +80,11 @@ namespace RPG.SceneManagement
       if (otherPortal)
       {
         GameObject player = GameObject.FindWithTag("Player");
+        player.GetComponent<NavMeshAgent>().enabled = false;
         player.GetComponent<NavMeshAgent>().Warp(otherPortal.spawnPoint.position);
         player.transform.rotation = otherPortal.spawnPoint.rotation;
+        player.GetComponent<NavMeshAgent>().enabled = true;
+
       }
     }
 
