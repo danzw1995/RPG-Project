@@ -15,12 +15,14 @@ namespace RPG.Combat
     [SerializeField] private float weaponRange = 2f;
     // 武器伤害值
     [SerializeField] private float weaponDamage = 5f;
+    // 是否为右手武器
+    [SerializeField] private bool isRightHanded = true;
 
-    public void Spawn(Transform handTransform, Animator animator)
+    public void Spawn(Transform rightHandTransform, Transform leftHandTransform, Animator animator)
     {
       if (equippedPrefab != null)
       {
-        Instantiate(equippedPrefab, handTransform);
+        Instantiate(equippedPrefab, isRightHanded ? rightHandTransform : leftHandTransform);
       }
       if (animatorOverride != null)
       {

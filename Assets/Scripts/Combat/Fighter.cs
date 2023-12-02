@@ -7,8 +7,10 @@ namespace RPG.Combat
 {
   public class Fighter : MonoBehaviour, IAction
   {
-    // 手
-    [SerializeField] private Transform handTransform = null;
+    // 右手装备点
+    [SerializeField] private Transform rightHandTransform = null;
+    // 左手装备点
+    [SerializeField] private Transform lefthandTransform = null;
     [SerializeField] private Weapon defaultWeapon = null;
     // 攻击间隔时间
     [SerializeField] private float timeBetweenAttacks = 1f;
@@ -55,7 +57,7 @@ namespace RPG.Combat
     {
       currentWeapon = weapon;
       if (currentWeapon == null) return;
-      weapon.Spawn(handTransform, animator);
+      weapon.Spawn(rightHandTransform, lefthandTransform, animator);
 
     }
 
