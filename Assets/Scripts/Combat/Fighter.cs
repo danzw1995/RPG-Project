@@ -7,13 +7,9 @@ namespace RPG.Combat
 {
   public class Fighter : MonoBehaviour, IAction
   {
-    // 武器的使用范围
-    [SerializeField] private float weaponRange = 2f;
-    // 武器伤害值
-    [SerializeField] private float weaponDamage = 5f;
     // 手
     [SerializeField] private Transform handTransform = null;
-    [SerializeField] private Weapon weapon = null;
+    [SerializeField] private Weapon defaultWeapon = null;
     // 攻击间隔时间
     [SerializeField] private float timeBetweenAttacks = 1f;
     // 上次攻击时间
@@ -23,6 +19,8 @@ namespace RPG.Combat
 
     private Mover mover;
     private ActionScheduler actionScheduler;
+
+    private Weapon currentWeapon = null;
 
     private void Awake()
     {
@@ -34,7 +32,7 @@ namespace RPG.Combat
     private void Start()
     {
 
-      SpawnWeapon();
+      EquipWeapon(defaultWeapon);
     }
 
     private void Update()
@@ -53,9 +51,10 @@ namespace RPG.Combat
         AttackBehavior();
       }
     }
-    private void SpawnWeapon()
+    public void EquipWeapon(Weapon weapon)
     {
-      if (weapon == null) return;
+      currentWeapon = weapon;
+      if (currentWeapon == null) return;
       weapon.Spawn(handTransform, animator);
 
     }
@@ -84,13 +83,13 @@ namespace RPG.Combat
     {
       if (target != null)
       {
-        target.TakeDamage(weaponDamage);
+        target.TakeDamage(currentWeapon.GetDamage());
       }
     }
 
     private bool GetIsInRange()
     {
-      return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+      return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
     }
 
     // 判断目标能否被攻击
