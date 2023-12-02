@@ -1,6 +1,7 @@
 using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
+using System;
 
 namespace RPG.Combat
 {
@@ -10,6 +11,9 @@ namespace RPG.Combat
     [SerializeField] private float weaponRange = 2f;
     // 武器伤害值
     [SerializeField] private float weaponDamage = 5f;
+    // 手
+    [SerializeField] private Transform handTransform = null;
+    [SerializeField] private Weapon weapon = null;
     // 攻击间隔时间
     [SerializeField] private float timeBetweenAttacks = 1f;
     // 上次攻击时间
@@ -27,6 +31,11 @@ namespace RPG.Combat
 
       animator = GetComponent<Animator>();
     }
+    private void Start()
+    {
+
+      SpawnWeapon();
+    }
 
     private void Update()
     {
@@ -43,6 +52,12 @@ namespace RPG.Combat
         mover.Cancel();
         AttackBehavior();
       }
+    }
+    private void SpawnWeapon()
+    {
+      if (weapon == null) return;
+      weapon.Spawn(handTransform, animator);
+
     }
 
     private void AttackBehavior()
