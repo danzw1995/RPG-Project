@@ -33,10 +33,15 @@ namespace RPG.Combat
         GameObject weapon =  Instantiate(equippedPrefab, GetTransform(rightHandTransform, leftHandTransform));
         weapon.name = weaponName;
       }
+      var overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
       if (animatorOverride != null)
       {
         animator.runtimeAnimatorController = animatorOverride;
 
+      } else if (overrideController != null)
+      {
+        // 重置动画
+        animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
       }
     }
 
