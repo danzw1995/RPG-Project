@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 4102316352392956352}
   - component: {fileID: 7907643998129022768}
   m_Layer: 0
-  m_Name: ArrowProjectile
+  m_Name: Base Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,6 +192,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   isHoming: 1
+  hitEffect: {fileID: 6980170001846164887, guid: 236538befb310e74bb473a6235a68bdd,
+    type: 3}
 --- !u!65 &7907643998129022768
 BoxCollider:
   m_ObjectHideFlags: 0

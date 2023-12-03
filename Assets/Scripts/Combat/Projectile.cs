@@ -8,8 +8,12 @@ namespace RPG.Combat
 {
   public class Projectile : MonoBehaviour
   {
+    // 速度
     [SerializeField] private float speed = 1f;
+    // 是否追踪
     [SerializeField] private bool isHoming = true;
+    // 集中效果
+    [SerializeField] private GameObject hitEffect = null;
 
     private Health target;
     private float damage = 0f;
@@ -31,6 +35,10 @@ namespace RPG.Combat
     {
       if (other.GetComponent<Health>() == target && !target.IsDead())
       {
+        if(hitEffect != null)
+        {
+          Instantiate(hitEffect, GetAimLocation(), transform.rotation);
+        }
         target.TakeDamage(this.damage);
         Destroy(gameObject);
       }
