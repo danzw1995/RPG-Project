@@ -1,5 +1,6 @@
 ﻿
 
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -18,17 +19,36 @@ namespace RPG.Combat
     // 是否为右手武器
     [SerializeField] private bool isRightHanded = true;
 
+    // 武器发射物
+    [SerializeField] private Projectile projectile = null;
+
     public void Spawn(Transform rightHandTransform, Transform leftHandTransform, Animator animator)
     {
       if (equippedPrefab != null)
       {
-        Instantiate(equippedPrefab, isRightHanded ? rightHandTransform : leftHandTransform);
+        Instantiate(equippedPrefab, GetTransform(rightHandTransform, leftHandTransform));
       }
       if (animatorOverride != null)
       {
         animator.runtimeAnimatorController = animatorOverride;
 
       }
+    }
+
+    public void LaunchProjectile(Transform rightHandTransform, Transform leftHandTransform, Health health)
+    {
+     Projectile projectileInstance =  Instantiate(projectile, GetTransform(rightHandTransform, leftHandTransform).position, Quaternion.identity);
+      projectileInstance.SetTarget(health, weaponDamage);
+    }
+
+    public Transform GetTransform(Transform rightHandTransform, Transform leftHandTransform)
+    {
+      return isRightHanded ? rightHandTransform : leftHandTransform;
+    }
+
+    public bool HasProjectile()
+    {
+      return projectile != null;
     }
 
     public float GetDamage()
