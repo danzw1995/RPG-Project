@@ -12,6 +12,7 @@ namespace RPG.Combat
     // 左手装备点
     [SerializeField] private Transform lefthandTransform = null;
     [SerializeField] private Weapon defaultWeapon = null;
+    [SerializeField] private string deaultWeaponName = "Unarmed";
     // 攻击间隔时间
     [SerializeField] private float timeBetweenAttacks = 1f;
     // 上次攻击时间
@@ -33,8 +34,8 @@ namespace RPG.Combat
     }
     private void Start()
     {
-
-      EquipWeapon(defaultWeapon);
+      Weapon weapon = Resources.Load<Weapon>(deaultWeaponName);
+      EquipWeapon(weapon);
     }
 
     private void Update()
