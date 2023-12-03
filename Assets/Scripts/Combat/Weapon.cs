@@ -22,17 +22,34 @@ namespace RPG.Combat
     // 武器发射物
     [SerializeField] private Projectile projectile = null;
 
+    private const string weaponName = "Weapon";
+
     public void Spawn(Transform rightHandTransform, Transform leftHandTransform, Animator animator)
     {
+      DestroyOldWeapon(rightHandTransform, leftHandTransform);
+
       if (equippedPrefab != null)
       {
-        Instantiate(equippedPrefab, GetTransform(rightHandTransform, leftHandTransform));
+        GameObject weapon =  Instantiate(equippedPrefab, GetTransform(rightHandTransform, leftHandTransform));
+        weapon.name = weaponName;
       }
       if (animatorOverride != null)
       {
         animator.runtimeAnimatorController = animatorOverride;
 
       }
+    }
+
+    private void DestroyOldWeapon(Transform rightHandTransform, Transform leftHandTransform)
+    {
+      Transform oldWeapon = rightHandTransform.Find(weaponName);
+      if (oldWeapon == null)
+      {
+        oldWeapon = leftHandTransform.Find(weaponName);
+      }
+      if (oldWeapon == null) return;
+      oldWeapon.name = "DESTROYING";
+      Destroy(oldWeapon.gameObject);
     }
 
     public void LaunchProjectile(Transform rightHandTransform, Transform leftHandTransform, Health health)
