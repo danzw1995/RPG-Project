@@ -1,5 +1,6 @@
 ﻿
 
+using RPG.Attributes;
 using RPG.Core;
 using UnityEngine;
 
