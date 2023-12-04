@@ -40,7 +40,7 @@ namespace RPG.Combat
 
       } else if (overrideController != null)
       {
-        // 重置动画
+        // 重置动画 
         animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
       }
     }

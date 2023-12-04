@@ -2,10 +2,11 @@ using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
 using System;
+using RPG.Saving;
 
 namespace RPG.Combat
 {
-  public class Fighter : MonoBehaviour, IAction
+  public class Fighter : MonoBehaviour, IAction, ISaveable
   {
     // 右手装备点
     [SerializeField] private Transform rightHandTransform = null;
@@ -34,8 +35,12 @@ namespace RPG.Combat
     }
     private void Start()
     {
-      Weapon weapon = Resources.Load<Weapon>(deaultWeaponName);
-      EquipWeapon(weapon);
+      if (currentWeapon == null)
+      {
+        Weapon weapon = Resources.Load<Weapon>(deaultWeaponName);
+        EquipWeapon(weapon);
+      }
+  
     }
 
     private void Update()
@@ -136,6 +141,18 @@ namespace RPG.Combat
     {
       animator.ResetTrigger("attack");
       animator.SetTrigger("stopAttack");
+    }
+
+    public object CaptureState()
+    {
+      return currentWeapon.name;
+    }
+
+    public void RestoreState(object state)
+    {
+      string weaponName = (string)state;
+      Weapon weapon = Resources.Load<Weapon>(weaponName);
+      EquipWeapon(weapon);
     }
   }
 }
