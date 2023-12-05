@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using RPG.Attributes;
 using UnityEngine;
 
 namespace RPG.Stats
@@ -15,7 +16,28 @@ namespace RPG.Stats
 
     public float GetStat(Stat stat)
     {
-      return progression.GetStat(characterClass, stat, startingLevel);
+      return progression.GetStat(characterClass, stat, GetLevel());
+    }
+
+    public int GetLevel()
+    {
+      Experience experience = gameObject.GetComponent<Experience>();
+      if (experience == null) return startingLevel;
+
+      float[] levels = progression.GetLevels(characterClass, Stat.ExperienceToLevel);
+      float experiencePoint = experience.GetExperience();
+
+      int level = 0;
+
+      for(; level < levels.Length; level ++)
+      {
+        if (levels[level] > experiencePoint)
+        {
+          break;
+        }
+      }
+
+      return level + 1;
     }
 
   }
