@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Stats
@@ -6,27 +7,60 @@ namespace RPG.Stats
   [CreateAssetMenu(fileName = "Progression", menuName = "Stats/New Progression", order = 0)]
   public class Progression : ScriptableObject
   {
-    [System.Serializable]
+    [Serializable]
     class ProgressionCharacterClass
     {
       public CharacterClass characterClass;
-      public float[] health;
+      public ProgressionStats[] progressionStats;
     }
+
+    [Serializable]
+    class ProgressionStats
+    {
+      public Stat stat;
+      public float[] levels;
+    }
+
     [SerializeField]
     private ProgressionCharacterClass[] characterClasses = null;
 
-    public float GetHealth(CharacterClass characterClass, int level)
-    {
+    private Dictionary<CharacterClass, Dictionary<Stat, float[]>> lookupTable;
 
-      foreach(ProgressionCharacterClass progressionCharacterClass in characterClasses)
+    public float GetStat(CharacterClass characterClass, Stat stat, int level)
+    {
+      BuildLookup();
+
+      if (lookupTable.ContainsKey(characterClass))
       {
-        if (progressionCharacterClass.characterClass == characterClass)
-        {
-          return progressionCharacterClass.health[level - 1];
+        if (lookupTable[characterClass].ContainsKey(stat)) {
+          if (level > 0 && level <= lookupTable[characterClass][stat].Length)
+          {
+            return lookupTable[characterClass][stat][level - 1];
+          }
         }
       }
 
       return 0;
+    }
+
+    public void BuildLookup()
+    {
+      if (lookupTable != null) return;
+
+      lookupTable = new Dictionary<CharacterClass, Dictionary<Stat, float[]>>();
+
+      foreach (ProgressionCharacterClass progressionCharacterClass in characterClasses)
+      {
+
+        var statLookupTable = new Dictionary<Stat, float[]>();
+        foreach (ProgressionStats progressionStat in progressionCharacterClass.progressionStats)
+        {
+          statLookupTable.Add(progressionStat.stat, progressionStat.levels);
+        }
+
+        lookupTable.Add(progressionCharacterClass.characterClass, statLookupTable);
+
+      }
     }
   }
 }

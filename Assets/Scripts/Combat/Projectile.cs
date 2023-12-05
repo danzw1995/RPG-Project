@@ -24,6 +24,7 @@ namespace RPG.Combat
 
     private Health target;
     private float damage = 0f;
+    private GameObject instigator;
 
     // Update is called once per frame
     private void Update()
@@ -42,7 +43,7 @@ namespace RPG.Combat
     {
       if (other.GetComponent<Health>() == target && !target.IsDead())
       {
-        target.TakeDamage(this.damage);
+        target.TakeDamage(this.damage, instigator);
         speed = 0;
         if (hitEffect != null)
         {
@@ -56,10 +57,11 @@ namespace RPG.Combat
       }
     }
 
-    public void SetTarget(Health target, float damage)
+    public void SetTarget(Health target, float damage, GameObject instigator)
     {
       this.target = target;
       this.damage = damage;
+      this.instigator = instigator;
       transform.LookAt(GetAimLocation());
       Destroy(gameObject, maxLifeTime);
     }
