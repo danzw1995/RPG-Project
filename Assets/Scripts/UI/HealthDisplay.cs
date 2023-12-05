@@ -9,7 +9,6 @@ namespace RPG.UI
   public class HealthDisplay : MonoBehaviour
   {
     private Health health;
-    [SerializeField] private Text healthValueText = null;
 
     private void Awake()
     {
@@ -18,7 +17,7 @@ namespace RPG.UI
 
     private void Update()
     {
-      healthValueText.text = string.Format("{0:0.0}%", health.GetHealthAge().ToString());
+      GetComponent<Text>().text = string.Format("{0:0.0}%", health.GetHealthAge().ToString());
     }
   }
 

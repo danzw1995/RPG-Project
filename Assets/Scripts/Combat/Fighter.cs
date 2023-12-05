@@ -68,6 +68,11 @@ namespace RPG.Combat
 
     }
 
+    public Health GetTarget()
+    {
+      return target;
+    }
+
     private void AttackBehavior()
     {
       if (timeSinceLastAttack >= timeBetweenAttacks)
