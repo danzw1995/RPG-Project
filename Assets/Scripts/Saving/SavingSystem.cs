@@ -50,10 +50,16 @@ namespace RPG.Saving
 
         BinaryFormatter formatter = new BinaryFormatter();
         formatter.Serialize(stream, state);
-
-
-
       }
+    }
+
+    public void Delete(string saveFile)
+    {
+      string path = GetPathFromSaveFile(saveFile);
+      print("Delete File in " + path);
+
+      File.Delete(path);
+
     }
 
     private Dictionary<string, object> LoadFile(string saveFile)
