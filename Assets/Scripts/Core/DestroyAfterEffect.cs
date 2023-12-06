@@ -6,14 +6,22 @@ namespace RPG.Core
 {
   public class DestroyAfterEffect : MonoBehaviour
   {
-  
+
+    [SerializeField] private GameObject target = null;
 
     // Update is called once per frame
     void Update()
     {
       if (!GetComponent<ParticleSystem>().IsAlive())
       {
-        Destroy(gameObject);
+        if (target != null)
+        {
+          Destroy(target);
+        }
+        else
+        {
+          Destroy(gameObject);
+        }
       }
     }
   }

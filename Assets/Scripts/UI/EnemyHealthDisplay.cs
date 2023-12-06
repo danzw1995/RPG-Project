@@ -24,7 +24,7 @@ namespace RPG.UI
         GetComponent<Text>().text = "NA";
       } else
       {
-        GetComponent<Text>().text = string.Format("{0:0.0}%", target.GetHealthAge().ToString());
+        GetComponent<Text>().text = string.Format("{0:0}/{1:0}", target.GetHealthPoints(), target.GetMaxHealthPoints());
 
       }
     }
