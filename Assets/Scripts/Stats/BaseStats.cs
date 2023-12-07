@@ -17,6 +17,8 @@ namespace RPG.Stats
 
     [SerializeField] private GameObject levelUpEffectPrefab = null;
 
+    [SerializeField] private bool shouldUseModifier = false;
+
     public event Action onLevelUp;
 
     private int currentLevel = 0;
@@ -56,10 +58,45 @@ namespace RPG.Stats
 
     public float GetStat(Stat stat)
     {
+      return (GetBaseStats(stat) + GetAdditiveModifier(stat)) * (1 + GetPercentageModifier(stat) / 100);
+    }
+
+    private float GetBaseStats(Stat stat)
+    {
       return progression.GetStat(characterClass, stat, GetLevel());
     }
 
-    public int CalculateLevel()
+    private float GetAdditiveModifier(Stat stat)
+    {
+      if (!shouldUseModifier) return 0;
+      float total = 0;
+      foreach (IModifierProvider modifierProvider in GetComponents<IModifierProvider>())
+      {
+        foreach (float modifiers in modifierProvider.GetAdditiveModifiers(stat))
+        {
+          total += modifiers;
+        }
+      }
+      return total;
+    }
+
+    private float GetPercentageModifier(Stat stat)
+    {
+      if (!shouldUseModifier) return 0;
+
+      float total = 0;
+      foreach (IModifierProvider modifierProvider in GetComponents<IModifierProvider>())
+      {
+        foreach (float modifiers in modifierProvider.GetPercentModifiers(stat))
+        {
+          total += modifiers;
+        }
+      }
+      return total;
+    }
+
+
+    private int CalculateLevel()
     {
       Experience experience = gameObject.GetComponent<Experience>();
       if (experience == null) return startingLevel;
@@ -69,7 +106,7 @@ namespace RPG.Stats
 
       int level = 0;
 
-      for(; level < levels.Length; level ++)
+      for (; level < levels.Length; level++)
       {
         if (levels[level] > experiencePoint)
         {

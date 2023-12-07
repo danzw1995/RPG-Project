@@ -17,6 +17,8 @@ namespace RPG.Combat
     [SerializeField] private float weaponRange = 2f;
     // 武器伤害值
     [SerializeField] private float weaponDamage = 5f;
+    // 伤害加成百分比
+    [SerializeField] private int percentDounce = 0;
     // 是否为右手武器
     [SerializeField] private bool isRightHanded = true;
 
@@ -78,6 +80,12 @@ namespace RPG.Combat
     {
       return weaponDamage;
     }
+
+    public float GetPercentAgeDounce()
+    {
+      return percentDounce;
+    }
+
     public float GetRange()
     {
       return weaponRange;

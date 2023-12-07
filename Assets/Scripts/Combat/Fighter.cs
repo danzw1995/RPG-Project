@@ -5,10 +5,11 @@ using System;
 using RPG.Saving;
 using RPG.Attributes;
 using RPG.Stats;
+using System.Collections.Generic;
 
 namespace RPG.Combat
 {
-  public class Fighter : MonoBehaviour, IAction, ISaveable
+  public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
   {
     // 右手装备点
     [SerializeField] private Transform rightHandTransform = null;
@@ -162,6 +163,22 @@ namespace RPG.Combat
       string weaponName = (string)state;
       Weapon weapon = Resources.Load<Weapon>(weaponName);
       EquipWeapon(weapon);
+    }
+
+    public IEnumerable<float> GetAdditiveModifiers(Stat stat)
+    {
+      if (stat == Stat.Damage)
+      {
+        yield return currentWeapon.GetDamage();
+      }
+    }
+
+    public IEnumerable<float> GetPercentModifiers(Stat stat)
+    {
+      if (stat == Stat.Damage)
+      {
+        yield return currentWeapon.GetPercentAgeDounce();
+      }
     }
   }
 }

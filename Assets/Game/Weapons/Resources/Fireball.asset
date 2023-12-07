@@ -17,6 +17,7 @@ MonoBehaviour:
     type: 3}
   weaponRange: 10
   weaponDamage: 20
+  percentDounce: 20
   isRightHanded: 0
   projectile: {fileID: 4102316352392956352, guid: 588b12c3d4bcc8741b50f3f76c999432,
     type: 3}
