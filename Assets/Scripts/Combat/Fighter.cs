@@ -6,6 +6,7 @@ using RPG.Saving;
 using RPG.Attributes;
 using RPG.Stats;
 using System.Collections.Generic;
+using GameDevTV.Utils;
 
 namespace RPG.Combat
 {
@@ -16,7 +17,7 @@ namespace RPG.Combat
     // 左手装备点
     [SerializeField] private Transform lefthandTransform = null;
     [SerializeField] private Weapon defaultWeapon = null;
-    [SerializeField] private string deaultWeaponName = "Unarmed";
+    [SerializeField] private string defaultWeaponName = "Unarmed";
     // 攻击间隔时间
     [SerializeField] private float timeBetweenAttacks = 1f;
     // 上次攻击时间
@@ -27,7 +28,7 @@ namespace RPG.Combat
     private Mover mover;
     private ActionScheduler actionScheduler;
 
-    private Weapon currentWeapon = null;
+    private LazyValue<Weapon> currentWeapon;
 
     private void Awake()
     {
@@ -35,15 +36,12 @@ namespace RPG.Combat
       actionScheduler = GetComponent<ActionScheduler>();
 
       animator = GetComponent<Animator>();
+
+      currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
     }
     private void Start()
     {
-      if (currentWeapon == null)
-      {
-        Weapon weapon = Resources.Load<Weapon>(deaultWeaponName);
-        EquipWeapon(weapon);
-      }
-  
+      currentWeapon.ForceInit();
     }
 
     private void Update()
@@ -62,12 +60,23 @@ namespace RPG.Combat
         AttackBehavior();
       }
     }
+
+    private Weapon SetupDefaultWeapon()
+    {
+      Weapon weapon = Resources.Load<Weapon>(defaultWeaponName);
+      AttackWeapon(weapon);
+      return weapon;
+    }
+
+    private void AttackWeapon(Weapon weapon)
+    {
+      weapon.Spawn(rightHandTransform, lefthandTransform, animator);
+    }
+
     public void EquipWeapon(Weapon weapon)
     {
-      currentWeapon = weapon;
-      if (currentWeapon == null) return;
-      weapon.Spawn(rightHandTransform, lefthandTransform, animator);
-
+      currentWeapon.value = weapon;
+      AttackWeapon(weapon);
     }
 
     public Health GetTarget()
@@ -101,9 +110,9 @@ namespace RPG.Combat
       {
         float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
 
-        if (currentWeapon.HasProjectile())
+        if (currentWeapon.value.HasProjectile())
         {
-          currentWeapon.LaunchProjectile(rightHandTransform, lefthandTransform, target, gameObject,damage);
+          currentWeapon.value.LaunchProjectile(rightHandTransform, lefthandTransform, target, gameObject,damage);
         } else
         {
           target.TakeDamage(damage, gameObject);
@@ -120,7 +129,7 @@ namespace RPG.Combat
 
     private bool GetIsInRange()
     {
-      return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
+      return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.value.GetRange();
     }
 
     // 判断目标能否被攻击
@@ -155,7 +164,7 @@ namespace RPG.Combat
 
     public object CaptureState()
     {
-      return currentWeapon.name;
+      return currentWeapon.value.name;
     }
 
     public void RestoreState(object state)
@@ -169,7 +178,7 @@ namespace RPG.Combat
     {
       if (stat == Stat.Damage)
       {
-        yield return currentWeapon.GetDamage();
+        yield return currentWeapon.value.GetDamage();
       }
     }
 
@@ -177,7 +186,7 @@ namespace RPG.Combat
     {
       if (stat == Stat.Damage)
       {
-        yield return currentWeapon.GetPercentAgeDounce();
+        yield return currentWeapon.value.GetPercentAgeDounce();
       }
     }
   }
