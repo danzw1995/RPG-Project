@@ -21,7 +21,7 @@ namespace RPG.UI
       Health target = fighter.GetTarget();
       if (target == null)
       {
-        GetComponent<Text>().text = "NA";
+        GetComponent<Text>().text = "N/A";
       } else
       {
         GetComponent<Text>().text = string.Format("{0:0}/{1:0}", target.GetHealthPoints(), target.GetMaxHealthPoints());
