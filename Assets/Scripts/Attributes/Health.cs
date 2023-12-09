@@ -3,16 +3,22 @@ using RPG.Core;
 using RPG.Saving;
 using RPG.Stats;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RPG.Attributes
 {
   public class Health : MonoBehaviour, ISaveable
   {
     [SerializeField] private int regentHealthPercent = 70;
+    [SerializeField] private TakeDamageEvent takeDamage = null;
     private bool isDead = false;
 
     private BaseStats baseStats;
     private LazyValue<float> healthPoints;
+
+    [System.Serializable]
+    private class TakeDamageEvent : UnityEvent<float> {}
+  
 
     private void Awake()
     {
@@ -53,6 +59,7 @@ namespace RPG.Attributes
     {
       print(instigator.name +  " took damage " + damage);
       healthPoints.value = Mathf.Max(healthPoints.value - damage, 0);
+      takeDamage.Invoke(damage);
       if (healthPoints.value == 0)
       {
         Die();
