@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 using RPG.Saving;
+using RPG.Control;
 
 namespace RPG.SceneManagement
 {
@@ -56,10 +57,16 @@ namespace RPG.SceneManagement
       yield return fader.FadeOut(fadeOutTime);
 
       SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+
+      // 禁用player
+      GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
       savingWrapper.Save();
 
       // 加载场景
       yield return SceneManager.LoadSceneAsync(sceneToLoad);
+
+      PlayerController newPlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+      newPlayerController.enabled = false;
       savingWrapper.Load();
       Portal otherPortal = GetOtherPortal();
 
@@ -69,8 +76,9 @@ namespace RPG.SceneManagement
       yield return new WaitForSeconds(fadeWaitTime);
 
       // 场景淡入
-      yield return fader.FadeIn(fadeInTime);
+      fader.FadeIn(fadeInTime);
 
+      newPlayerController.enabled = true;
       print("Scene Loaded");
       Destroy(gameObject);
     }
