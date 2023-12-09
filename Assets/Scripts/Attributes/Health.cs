@@ -11,6 +11,7 @@ namespace RPG.Attributes
   {
     [SerializeField] private int regentHealthPercent = 70;
     [SerializeField] private TakeDamageEvent takeDamage = null;
+    [SerializeField] private UnityEvent onDie = null;
     private bool isDead = false;
 
     private BaseStats baseStats;
@@ -62,6 +63,7 @@ namespace RPG.Attributes
       takeDamage.Invoke(damage);
       if (healthPoints.value == 0)
       {
+        onDie.Invoke();
         Die();
         AwardExperience(instigator);
       }
