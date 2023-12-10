@@ -53,7 +53,7 @@ namespace RPG.Combat
       if (target == null) return;
       if (target.IsDead()) return;
       // 计算当前位置与target之间的距离,距离大于weaponRange时移动  
-      if (!GetIsInRange())
+      if (!GetIsInRange(target.transform))
       {
         mover.MoveTo(target.transform.position, 1f);
       }
@@ -134,9 +134,9 @@ namespace RPG.Combat
       Hit();
     }
 
-    private bool GetIsInRange()
+    private bool GetIsInRange(Transform targetTransform)
     {
-      return Vector3.Distance(transform.position, target.transform.position) < currentWeaponConfig.GetRange();
+      return Vector3.Distance(transform.position, targetTransform.position) < currentWeaponConfig.GetRange();
     }
 
     // 判断目标能否被攻击
@@ -147,6 +147,7 @@ namespace RPG.Combat
         return false;
       }
       Health health = combatTarget.GetComponent<Health>();
+      if (!mover.CanMoveTo(combatTarget.transform.position) && !GetIsInRange(combatTarget.transform)) { return false; }
       return health != null && !health.IsDead();
     }
 

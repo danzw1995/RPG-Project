@@ -29,7 +29,8 @@ namespace RPG.Control
     [SerializeField] private CursorMapping[] cursorMappings = null;
 
     [SerializeField] private float maxNavMeshProjectionDistance = 1f;
-    [SerializeField] private float maxNavPathLength = 40f;
+
+    [SerializeField] private float raycastRadius = 0.3f;
 
     private void Awake()
     {
@@ -93,7 +94,7 @@ namespace RPG.Control
 
     private RaycastHit[] GetRaycastAllSorted()
     {
-      RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+      RaycastHit[] hits = Physics.SphereCastAll(GetMouseRay(), raycastRadius);
 
       float[] distances = new float[hits.Length];
       for (int i = 0; i < hits.Length; i++)
@@ -166,29 +167,12 @@ namespace RPG.Control
 
       target = navMeshHit.position;
 
-      NavMeshPath navMeshPath = new NavMeshPath();
-      bool hasPath = NavMesh.CalculatePath(transform.position, target, NavMesh.AllAreas, navMeshPath);
-      if (!hasPath) return false;
-      if (navMeshPath.status != NavMeshPathStatus.PathComplete) return false;
-      if (GetPathLength(navMeshPath) > maxNavPathLength) return false;
+      if (!mover.CanMoveTo(target)) return false;
 
 
       return true;
     }
 
-    private float GetPathLength(NavMeshPath navMeshPath)
-    {
-      float pathLength = 0;
-
-      if (navMeshPath.corners.Length < 2) return pathLength;
-
-      for (int i = 1; i < navMeshPath.corners.Length; i ++)
-      {
-        pathLength += Vector3.Distance(navMeshPath.corners[i], navMeshPath.corners[i - 1]);
-      }
-
-      return pathLength;
-    }
 
     private void SetCursor(CursorType type)
     {

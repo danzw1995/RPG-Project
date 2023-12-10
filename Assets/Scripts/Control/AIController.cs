@@ -20,6 +20,10 @@ namespace RPG.Control
     // 导航点停留时间
     [SerializeField] private float waypointDwellTime = 3f;
 
+    [SerializeField] private float aggrevateCooldownTime = 5f;
+
+    [SerializeField] private float shoutDistance = 5f;
+
     // 巡逻路径
     [SerializeField] private PatrolPath patrolPath = null;
 
@@ -40,6 +44,7 @@ namespace RPG.Control
 
     private float timeSinceLastSawPlayer = Mathf.Infinity;
     private float timeSinceArrivedWaypoint = Mathf.Infinity;
+    private float timeSinceAggrevated = Mathf.Infinity;
 
     private int currentWaypointIndex = 0;
 
@@ -63,7 +68,7 @@ namespace RPG.Control
     {
       if (health.IsDead()) return;
 
-      if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
+      if (IsAggrevate() && fighter.CanAttack(player))
       {
         AttackBehavior();
       }
@@ -88,6 +93,22 @@ namespace RPG.Control
       timeSinceLastSawPlayer = 0;
 
       fighter.Attack(player);
+
+      AggrevateNearByEnemies();
+    }
+
+    private void AggrevateNearByEnemies ()
+    {
+      RaycastHit[] hits =  Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);
+
+      foreach(RaycastHit hit in hits)
+      {
+        AIController controller = hit.collider.gameObject.GetComponent<AIController>();
+        if (controller != null)
+        {
+          controller.Aggrevate();
+        }
+      }
     }
 
     private void SuspicionBehavior()
@@ -122,6 +143,7 @@ namespace RPG.Control
     {
       timeSinceLastSawPlayer += Time.deltaTime;
       timeSinceArrivedWaypoint += Time.deltaTime;
+      timeSinceAggrevated += Time.deltaTime;
     }
 
     private bool AtWaypoint()
@@ -140,10 +162,15 @@ namespace RPG.Control
       return patrolPath.GetWaypoint(currentWaypointIndex);
     }
 
-    private bool InAttackRangeOfPlayer()
+    public void Aggrevate()
+    {
+      timeSinceAggrevated = 0;
+    }
+
+    private bool IsAggrevate()
     {
       float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-      return distanceToPlayer < chaseDistance;
+      return distanceToPlayer < chaseDistance || timeSinceAggrevated < aggrevateCooldownTime;
     }
 
     // Call by unity
