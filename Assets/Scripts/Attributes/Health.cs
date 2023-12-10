@@ -110,6 +110,11 @@ namespace RPG.Attributes
       experience.GainExperience(baseStats.GetStat(Stat.ExperienceReward));
     }
 
+    public void Heal(float healthToReStore)
+    {
+      healthPoints.value =  Mathf.Min(GetHealthPoints() + healthToReStore, GetMaxHealthPoints());
+    }
+
     public object CaptureState()
     {
       return healthPoints.value;
