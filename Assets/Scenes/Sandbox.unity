@@ -1965,6 +1965,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -86.090004
       objectReference: {fileID: 0}
+    - target: {fileID: 6795246644418775948, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795246644418775948, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795246644418775948, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 6795246645985277797, guid: c921a546b08b69d4fb8803ddad154a1a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1984,6 +1999,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.13867188
+      objectReference: {fileID: 0}
+    - target: {fileID: 99574053801358125, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.024
+      objectReference: {fileID: 0}
+    - target: {fileID: 99574053801358125, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 99574053801358125, guid: c921a546b08b69d4fb8803ddad154a1a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.458
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c921a546b08b69d4fb8803ddad154a1a, type: 3}
@@ -5448,15 +5478,15 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6669832014842543390, guid: 94dd3de3bc4b95b4a817d61be73adc61,
-        type: 3}
-      propertyPath: uniqueIdentifier
-      value: c3db6313-b721-450f-af73-9975b17b1642
-      objectReference: {fileID: 0}
     - target: {fileID: 6563805290964777134, guid: 94dd3de3bc4b95b4a817d61be73adc61,
         type: 3}
       propertyPath: defaultWeaponName
       value: Bow Blue Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669832014842543390, guid: 94dd3de3bc4b95b4a817d61be73adc61,
+        type: 3}
+      propertyPath: uniqueIdentifier
+      value: c3db6313-b721-450f-af73-9975b17b1642
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94dd3de3bc4b95b4a817d61be73adc61, type: 3}
@@ -5708,7 +5738,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591403724}
-  m_LocalRotation: {x: 0.14475647, y: 0.31335172, z: -0.04839446, w: 0.9372909}
+  m_LocalRotation: {x: 0.14475647, y: 0.31335175, z: -0.048394464, w: 0.9372909}
   m_LocalPosition: {x: -74.22, y: 3.36, z: -58.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
