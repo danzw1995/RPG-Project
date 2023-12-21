@@ -16,3 +16,9 @@ MonoBehaviour:
   - uniqueID: start
     text: 11112312311223123
     children: []
+    position:
+      serializedVersion: 2
+      x: 10
+      y: 10
+      width: 100
+      height: 100
