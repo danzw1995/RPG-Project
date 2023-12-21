@@ -15,9 +15,22 @@ namespace RPG.Dialogue.Editor
 
     private Dialogue selectedDialogue;
 
+    [NonSerialized]
     private GUIStyle nodeStyle;
 
+    [NonSerialized]
     private DialogueNode draggingNode = null;
+
+
+    [NonSerialized]
+    private DialogueNode creatingNode = null;
+
+    [NonSerialized]
+    private DialogueNode deletingNode = null;
+
+    [NonSerialized]
+    private DialogueNode linkingParentNode = null;
+
 
     private Vector2 draggingOffset;
 
@@ -84,6 +97,21 @@ namespace RPG.Dialogue.Editor
           DrawNode(node);
 
         }
+
+        if (creatingNode != null)
+        {
+          Undo.RecordObject(selectedDialogue, "Add Node");
+          selectedDialogue.CreateNode(creatingNode);
+          creatingNode = null;
+        }
+
+        if (deletingNode != null)
+        {
+          Undo.RecordObject(selectedDialogue, "Delete Node");
+
+          selectedDialogue.DeleteNode(deletingNode);
+          deletingNode = null;
+        }
       }
     }
 
@@ -117,14 +145,11 @@ namespace RPG.Dialogue.Editor
     {
       GUILayout.BeginArea(new Rect(node.rect), nodeStyle);
       EditorGUI.BeginChangeCheck();
-      EditorGUILayout.LabelField("Node: ", EditorStyles.whiteLabel);
       string newText = EditorGUILayout.TextField(node.text);
-      string newUniqueId = EditorGUILayout.TextField(node.uniqueID);
       if (EditorGUI.EndChangeCheck())
       {
         Undo.RecordObject(selectedDialogue, "Update Dialog");
         node.text = newText;
-        node.uniqueID = newUniqueId;
       }
 
       foreach (DialogueNode childNode in selectedDialogue.GetAllChildren(node))
@@ -132,7 +157,58 @@ namespace RPG.Dialogue.Editor
         EditorGUILayout.LabelField(childNode.text);
       }
 
+      GUILayout.BeginHorizontal();
+
+      if (GUILayout.Button("+"))
+      {
+        creatingNode = node;
+      }
+
+      DrawLinkingNode(node);
+
+      if (GUILayout.Button("-"))
+      {
+        deletingNode = node;
+      }
+      GUILayout.EndHorizontal();
+
       GUILayout.EndArea();
+    }
+
+    private void DrawLinkingNode(DialogueNode node)
+    {
+      if (linkingParentNode == null)
+      {
+        if (GUILayout.Button("link"))
+        {
+          linkingParentNode = node;
+        }
+      }
+      else if (linkingParentNode.uniqueID == node.uniqueID)
+      {
+        if (GUILayout.Button("cancel"))
+        {
+          linkingParentNode = null;
+        }
+      }
+      else if (linkingParentNode.children.Contains(node.uniqueID))
+      {
+        if (GUILayout.Button("unlink"))
+        {
+          Undo.RecordObject(selectedDialogue, "UnLink Dialogue node");
+          linkingParentNode.children.Remove(node.uniqueID);
+          linkingParentNode = null;
+        }
+      }
+      else
+      {
+        if (GUILayout.Button("child"))
+        {
+          Undo.RecordObject(selectedDialogue, "Link Dialogue node");
+          linkingParentNode.children.Add(node.uniqueID);
+          linkingParentNode = null;
+        }
+      }
     }
 
 

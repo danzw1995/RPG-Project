@@ -13,32 +13,12 @@ MonoBehaviour:
   m_Name: New Dialogue
   m_EditorClassIdentifier: 
   nodes:
-  - uniqueID: 1
-    text: 232323
-    children:
-    - 1
-    - 2
-    position:
-      serializedVersion: 2
-      x: 10
-      y: 10
-      width: 200
-      height: 200
-  - uniqueID: 2
-    text: 122
+  - uniqueID: 37ba5542-9179-43cc-88e1-891168eca3fc
+    text: 
     children: []
-    position:
+    rect:
       serializedVersion: 2
-      x: 10
-      y: 220
-      width: 200
-      height: 200
-  - uniqueID: 3
-    text: 123
-    children: []
-    position:
-      serializedVersion: 2
-      x: 10
-      y: 430
+      x: 0
+      y: 0
       width: 200
       height: 200

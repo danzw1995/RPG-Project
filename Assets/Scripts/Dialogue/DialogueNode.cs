@@ -1,5 +1,6 @@
 
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Dialogue
@@ -9,7 +10,7 @@ namespace RPG.Dialogue
   {
     public string uniqueID;
     public string text;
-    public string[] children;
+    public List<string> children = new List<string>();
 
     public Rect rect = new Rect(0, 0, 200, 200);
   }
