@@ -50,7 +50,6 @@ namespace RPG.Dialogue.Editor
       nodeStyle.padding = new RectOffset(20, 20, 20, 20);
       nodeStyle.border = new RectOffset(12, 12, 12, 12);
     }
-
     private void OnSelectionChange()
     {
       Dialogue dialogue = Selection.activeObject as Dialogue;
@@ -74,12 +73,20 @@ namespace RPG.Dialogue.Editor
       else
       {
         ProcessEvents();
+
         foreach (DialogueNode node in selectedDialogue.GetAllNodes())
         {
-          OnGUINode(node);
+
+          DrawConnections(node);
+        }
+        foreach (DialogueNode node in selectedDialogue.GetAllNodes())
+        {
+          DrawNode(node);
+
         }
       }
     }
+
 
     private void ProcessEvents()
     {
@@ -106,7 +113,7 @@ namespace RPG.Dialogue.Editor
     }
 
 
-    private void OnGUINode(DialogueNode node)
+    private void DrawNode(DialogueNode node)
     {
       GUILayout.BeginArea(new Rect(node.rect), nodeStyle);
       EditorGUI.BeginChangeCheck();
@@ -120,7 +127,28 @@ namespace RPG.Dialogue.Editor
         node.uniqueID = newUniqueId;
       }
 
+      foreach (DialogueNode childNode in selectedDialogue.GetAllChildren(node))
+      {
+        EditorGUILayout.LabelField(childNode.text);
+      }
+
       GUILayout.EndArea();
+    }
+
+
+    private void DrawConnections(DialogueNode node)
+    {
+      Vector3 startPosition = new Vector2(node.rect.xMax, node.rect.center.y);
+      foreach (DialogueNode childNode in selectedDialogue.GetAllChildren(node))
+      {
+
+        Vector3 endPosition = new Vector2(childNode.rect.xMin, childNode.rect.center.y);
+
+        Vector3 controlOffset = endPosition - startPosition;
+        controlOffset.y = 0;
+        controlOffset.x *= 0.67f;
+        Handles.DrawBezier(startPosition, endPosition, startPosition + controlOffset, endPosition - controlOffset, Color.white, null, 5f);
+      }
     }
 
     private DialogueNode GetNodeAtPoint(Vector2 point)
