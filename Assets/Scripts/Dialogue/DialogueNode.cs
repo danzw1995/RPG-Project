@@ -20,6 +20,22 @@ namespace RPG.Dialogue
     [SerializeField]
     private Rect rect = new Rect(0, 0, 200, 200);
 
+    [SerializeField]
+    private string onEnterAction;
+
+    [SerializeField]
+    private string onExitAction;
+
+
+
+    public string GetOnEnterAction()
+    {
+      return onEnterAction;
+    }
+    public string GetOnExitAction()
+    {
+      return onExitAction;
+    }
     public string GetText()
     {
       return text;

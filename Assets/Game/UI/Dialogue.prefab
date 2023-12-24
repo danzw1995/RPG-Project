@@ -665,6 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a11505ece35125d4db062d8479ce7c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speaker: {fileID: 5560794517991749528}
   aiText: {fileID: 606323077629451783}
   nextButton: {fileID: 3555867253143687129}
   quitButton: {fileID: 9139144166403615667}

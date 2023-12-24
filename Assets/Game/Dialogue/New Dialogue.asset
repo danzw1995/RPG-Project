@@ -22,6 +22,8 @@ MonoBehaviour:
     y: 116
     width: 200
     height: 200
+  onEnterAction: 2222
+  onExitAction: 3333
 --- !u!114 &-2618987813791071122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,10 +42,12 @@ MonoBehaviour:
   - 8f2f9c46-927b-4a2f-aa86-3ad58b336b15
   rect:
     serializedVersion: 2
-    x: -9
-    y: 148
+    x: -13
+    y: 130
     width: 200
     height: 200
+  onEnterAction: I Enter
+  onExitAction: I leave
 --- !u!114 &-888326065324651190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +70,8 @@ MonoBehaviour:
     y: 69
     width: 200
     height: 200
+  onEnterAction: 
+  onExitAction: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +91,7 @@ MonoBehaviour:
   - {fileID: 5599132857026276847}
   - {fileID: -888326065324651190}
   - {fileID: 3602080534613414101}
+  - {fileID: 5146847017193757890}
   childNodeOffset: {x: 300, y: 0}
 --- !u!114 &3602080534613414101
 MonoBehaviour:
@@ -100,13 +107,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: But I still come
   isPlayerSpeaking: 1
-  children: []
+  children:
+  - dfb00e54-c78b-435c-ad85-f08d4a2efcc3
   rect:
     serializedVersion: 2
     x: 1240
     y: 61
     width: 200
     height: 200
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &5146847017193757890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: dfb00e54-c78b-435c-ad85-f08d4a2efcc3
+  m_EditorClassIdentifier: 
+  text: ....
+  isPlayerSpeaking: 0
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1540
+    y: 61
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: attack
 --- !u!114 &5599132857026276847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +162,8 @@ MonoBehaviour:
     y: 78
     width: 200
     height: 200
+  onEnterAction: 
+  onExitAction: 
 --- !u!114 &8116238673654390250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,3 +186,5 @@ MonoBehaviour:
     y: 94
     width: 200
     height: 200
+  onEnterAction: 
+  onExitAction: 
