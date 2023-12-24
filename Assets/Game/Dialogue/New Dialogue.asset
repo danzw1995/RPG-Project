@@ -1,5 +1,71 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2635393609445275462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 8f2f9c46-927b-4a2f-aa86-3ad58b336b15
+  m_EditorClassIdentifier: 
+  text: I come
+  isPlayerSpeaking: 1
+  children:
+  - 95c4ab2d-cbdc-43dc-913a-ebb6abd0a67b
+  rect:
+    serializedVersion: 2
+    x: 227
+    y: 116
+    width: 200
+    height: 200
+--- !u!114 &-2618987813791071122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 2c6c4c68-ec57-45d9-8ed8-f9412071696f
+  m_EditorClassIdentifier: 
+  text: You come
+  isPlayerSpeaking: 0
+  children:
+  - 8f2f9c46-927b-4a2f-aa86-3ad58b336b15
+  rect:
+    serializedVersion: 2
+    x: -9
+    y: 148
+    width: 200
+    height: 200
+--- !u!114 &-888326065324651190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 0ab31f6a-1c0c-4716-b3a7-c6dba67872b1
+  m_EditorClassIdentifier: 
+  text: But you still come
+  isPlayerSpeaking: 0
+  children:
+  - 5bb7835b-ad4e-4e17-8ece-1c9c3d11bd58
+  rect:
+    serializedVersion: 2
+    x: 970
+    y: 69
+    width: 200
+    height: 200
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,12 +79,75 @@ MonoBehaviour:
   m_Name: New Dialogue
   m_EditorClassIdentifier: 
   nodes:
-  - uniqueID: 37ba5542-9179-43cc-88e1-891168eca3fc
-    text: 
-    children: []
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 200
-      height: 200
+  - {fileID: -2618987813791071122}
+  - {fileID: -2635393609445275462}
+  - {fileID: 8116238673654390250}
+  - {fileID: 5599132857026276847}
+  - {fileID: -888326065324651190}
+  - {fileID: 3602080534613414101}
+  childNodeOffset: {x: 300, y: 0}
+--- !u!114 &3602080534613414101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 5bb7835b-ad4e-4e17-8ece-1c9c3d11bd58
+  m_EditorClassIdentifier: 
+  text: But I still come
+  isPlayerSpeaking: 1
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1240
+    y: 61
+    width: 200
+    height: 200
+--- !u!114 &5599132857026276847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 55bc2bff-9411-40b0-8ae7-0eb3cc5fbf2e
+  m_EditorClassIdentifier: 
+  text: I shouldn'y come
+  isPlayerSpeaking: 1
+  children:
+  - 0ab31f6a-1c0c-4716-b3a7-c6dba67872b1
+  rect:
+    serializedVersion: 2
+    x: 723
+    y: 78
+    width: 200
+    height: 200
+--- !u!114 &8116238673654390250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 95c4ab2d-cbdc-43dc-913a-ebb6abd0a67b
+  m_EditorClassIdentifier: 
+  text: You shouldn't come
+  isPlayerSpeaking: 0
+  children:
+  - 55bc2bff-9411-40b0-8ae7-0eb3cc5fbf2e
+  rect:
+    serializedVersion: 2
+    x: 449
+    y: 94
+    width: 200
+    height: 200
