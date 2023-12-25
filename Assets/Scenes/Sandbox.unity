@@ -4403,8 +4403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c60402aad4ab14e9e6c4cb2d4ebcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
-  conversantName: 
+  dialogue: {fileID: 11400000, guid: 4f3f12af2f403f342b3cea68520ba8aa, type: 2}
+  conversantName: Super man
 --- !u!114 &839944368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4417,22 +4417,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6cd0f2f967569f4183fc8a086421251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action: attack
+  action: GiveQuest
   onTrigger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 345496132}
-        m_TargetAssemblyTypeName: RPG.Combat.AggroGroup, Assembly-CSharp
-        m_MethodName: Activate
-        m_Mode: 6
+      - m_Target: {fileID: 839944370}
+        m_TargetAssemblyTypeName: RPG.Quests.QuestGiver, Assembly-CSharp
+        m_MethodName: GiverQuest
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &839944370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839944353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8c2c78cb1755849840cc60907140a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 11400000, guid: ae0541b2d5e1e6b408311442f4ec9ea7, type: 2}
 --- !u!1001 &846844020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9529,7 +9542,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874861664}
-  m_LocalRotation: {x: 0.15534082, y: -0.06980495, z: 0.011004998, w: 0.9853301}
+  m_LocalRotation: {x: 0.15534082, y: -0.06980496, z: 0.011005, w: 0.9853301}
   m_LocalPosition: {x: 2.15, y: 4.69, z: -2.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11893,7 +11906,7 @@ PrefabInstance:
     - target: {fileID: 2763655918682555842, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 274.81046
+      value: 240.24493
       objectReference: {fileID: 0}
     - target: {fileID: 2786676186479370532, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
@@ -13254,7 +13267,7 @@ PrefabInstance:
     - target: {fileID: 5263524460118599961, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -533.3594
+      value: -570.7498
       objectReference: {fileID: 0}
     - target: {fileID: 5263524460118599961, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}

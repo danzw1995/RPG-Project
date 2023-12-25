@@ -1,17 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using GameDevTV.Core.UI.Tooltips;
+using RPG.Quests;
 using UnityEngine;
 
-public class QuestTooltipSpawner : TooltipSpawner
+namespace RPG.UI.Quests
 {
-  public override bool CanCreateTooltip()
+  public class QuestTooltipSpawner : TooltipSpawner
   {
-    return true;
+    public override bool CanCreateTooltip()
+    {
+      return true;
+    }
+
+    public override void UpdateTooltip(GameObject tooltip)
+    {
+      QuestStatus status = GetComponent<QuestItemUI>().GetStatus();
+
+      tooltip.GetComponent<QuestToolTipUI>().Setup(status);
+    }
   }
 
-  public override void UpdateTooltip(GameObject tooltip)
-  {
-    return;
-  }
 }

@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9200218000521229462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: e1fa97e1-9896-4f39-9958-3e50b597be46
+  m_EditorClassIdentifier: 
+  text: Can you help me
+  isPlayerSpeaking: 0
+  children:
+  - cb3f3e3f-327e-4199-9d40-ba28b6325c03
+  rect:
+    serializedVersion: 2
+    x: -4
+    y: 79
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &-4850030603437857179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 98b93a73-b7de-4bc8-a0af-562ac8e9ea17
+  m_EditorClassIdentifier: 
+  text: thank you
+  isPlayerSpeaking: 0
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1081
+    y: 83
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: GiveQuest
+--- !u!114 &-1371810818465395342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: cb3f3e3f-327e-4199-9d40-ba28b6325c03
+  m_EditorClassIdentifier: 
+  text: Yes, what is ?
+  isPlayerSpeaking: 1
+  children:
+  - 5a3189fb-d55e-4547-a07e-11ae99d75780
+  rect:
+    serializedVersion: 2
+    x: 249
+    y: 87
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f11699bf27b3d4ebe183c6fa2a36fc, type: 3}
+  m_Name: buy milk dialogue
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -9200218000521229462}
+  - {fileID: -1371810818465395342}
+  - {fileID: 1959934717028471807}
+  - {fileID: 4723052043848716081}
+  - {fileID: -4850030603437857179}
+  childNodeOffset: {x: 300, y: 0}
+--- !u!114 &1959934717028471807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 5a3189fb-d55e-4547-a07e-11ae99d75780
+  m_EditorClassIdentifier: 
+  text: buy three milk.
+  isPlayerSpeaking: 0
+  children:
+  - 8fc0d18e-10b4-43f2-aeb7-0e247572e014
+  rect:
+    serializedVersion: 2
+    x: 500
+    y: 100
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &4723052043848716081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 8fc0d18e-10b4-43f2-aeb7-0e247572e014
+  m_EditorClassIdentifier: 
+  text: ok
+  isPlayerSpeaking: 1
+  children:
+  - 98b93a73-b7de-4bc8-a0af-562ac8e9ea17
+  rect:
+    serializedVersion: 2
+    x: 780
+    y: 83
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: 
