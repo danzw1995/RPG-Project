@@ -10,11 +10,13 @@ namespace RPG.UI.Quests
   public class QuestToolTipUI : MonoBehaviour
   {
     [SerializeField] private TextMeshProUGUI title = null;
+    [SerializeField] private TextMeshProUGUI rewardText = null;
 
     [SerializeField] private Transform objectiveContainer = null;
 
     [SerializeField] private GameObject objectivePrefab = null;
     [SerializeField] private GameObject objectiveIncompletedPrefab = null;
+
     public void Setup(QuestStatus status)
     {
 
@@ -23,15 +25,15 @@ namespace RPG.UI.Quests
 
       objectiveContainer.DetachChildren();
 
-      foreach (string objective in quest.GetObjectives())
+      foreach (var objective in quest.GetObjectives())
       {
-        GameObject prefab = status.IsCompleteObjective(objective) ? objectivePrefab : objectiveIncompletedPrefab;
+        GameObject prefab = status.IsCompleteObjective(objective.reference) ? objectivePrefab : objectiveIncompletedPrefab;
 
         GameObject objectiveInstance = Instantiate(prefab, objectiveContainer);
         TextMeshProUGUI objectiveText = objectiveInstance.GetComponentInChildren<TextMeshProUGUI>();
-        objectiveText.text = objective;
+        objectiveText.text = objective.description;
+        rewardText.text = quest.GetRewardText();
       }
-
     }
   }
 }

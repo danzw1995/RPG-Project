@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: give me 100
   m_EditorClassIdentifier: 
   objectives:
-  - 1
-  - 2
-  - 3
+  - reference: 1
+    description: qqq
+  - reference: 2
+    description: www
+  - reference: 3
+    description: eeee
+  rewards: []

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: buy milk quest
   m_EditorClassIdentifier: 
   objectives:
-  - buy
-  - 3
-  - milk
+  - reference: 1
+    description: buy three milk
+  rewards:
+  - number: 1
+    item: {fileID: 11400000, guid: d64a307491012e543995a2eef4f8cf74, type: 2}

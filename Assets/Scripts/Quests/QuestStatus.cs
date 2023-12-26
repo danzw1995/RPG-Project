@@ -71,6 +71,11 @@ namespace RPG.Quests
       };
       return questRecord;
     }
+
+    public bool IsComplete()
+    {
+      return completedObjectives.Count >= quest.GetObjectiveCount();
+    }
   }
 
 }

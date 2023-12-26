@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: defend three enemies
   m_EditorClassIdentifier: 
   objectives:
-  - 1
-  - 2
-  - 3
-  - 4
-  - 5
+  - reference: 1
+    description: aaaa
+  - reference: 2
+    description: sssss
+  - reference: 3
+    description: ddddd
+  - reference: 4
+    description: fffff
+  - reference: 5
+    description: ggggg
+  rewards: []

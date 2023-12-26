@@ -368,7 +368,7 @@ RectTransform:
   - {fileID: 8233038556928568749}
   - {fileID: 6901285590399159319}
   - {fileID: 5364534900897020965}
-  - {fileID: 6488940037507828151}
+  - {fileID: 7380361268935927827}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -468,6 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 1499741198663847370}
+  rewardText: {fileID: 2180661167372106508}
   objectiveContainer: {fileID: 6901285590399159319}
   objectivePrefab: {fileID: 8511619343758415099, guid: 885f2d41b03f3ef4096aba8b22ebfd63,
     type: 3}
@@ -607,7 +608,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &6883924246548262630
+--- !u!1 &7199438637941509954
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -615,25 +616,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6488940037507828151}
-  - component: {fileID: 828700318582406916}
-  - component: {fileID: 2459620885934316200}
+  - component: {fileID: 7380361268935927827}
+  - component: {fileID: 4026558235373182624}
+  - component: {fileID: 2180661167372106508}
   m_Layer: 0
-  m_Name: Rewards
+  m_Name: Rewards Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &6488940037507828151
+--- !u!224 &7380361268935927827
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6883924246548262630}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 7199438637941509954}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 24.401636}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6430873076336087140}
@@ -644,21 +645,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &828700318582406916
+--- !u!222 &4026558235373182624
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6883924246548262630}
+  m_GameObject: {fileID: 7199438637941509954}
   m_CullTransparentMesh: 0
---- !u!114 &2459620885934316200
+--- !u!114 &2180661167372106508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6883924246548262630}
+  m_GameObject: {fileID: 7199438637941509954}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
