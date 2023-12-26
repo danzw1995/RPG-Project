@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameDevTV.Saving;
 using UnityEngine;
 
 
 namespace RPG.Quests
 {
 
-  public class QuestList : MonoBehaviour
+  public class QuestList : MonoBehaviour, ISaveable
   {
     private List<QuestStatus> statuses = new List<QuestStatus>();
 
@@ -63,6 +64,37 @@ namespace RPG.Quests
         {
           onUpdateQuest();
         }
+      }
+    }
+
+    public object CaptureState()
+    {
+      List<object> state = new List<object>();
+      foreach (QuestStatus status in statuses)
+      {
+        state.Add(status.CaptureState());
+      }
+      return state;
+    }
+
+    public void RestoreState(object state)
+    {
+      List<object> stateList = state as List<object>;
+
+      statuses.Clear();
+      if (stateList != null)
+      {
+        foreach (object stateObject in stateList)
+        {
+          statuses.Add(new QuestStatus(stateObject));
+        }
+      }
+
+
+
+      if (onUpdateQuest != null)
+      {
+        onUpdateQuest();
       }
     }
   }
