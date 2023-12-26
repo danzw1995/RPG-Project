@@ -37,14 +37,33 @@ namespace RPG.Quests
 
     private bool HasQuest(Quest quest)
     {
+      return GetQuestStatus(quest) != null;
+    }
+
+    private QuestStatus GetQuestStatus(Quest quest)
+    {
       foreach (QuestStatus status in statuses)
       {
         if (status.GetQuest() == quest)
         {
-          return true;
+          return status;
         }
       }
-      return false;
+      return null;
+
+    }
+
+    public void CompleteObjective(Quest quest, string objective)
+    {
+      QuestStatus status = GetQuestStatus(quest);
+      if (status != null)
+      {
+        status.CompleteObjective(objective);
+        if (onUpdateQuest != null)
+        {
+          onUpdateQuest();
+        }
+      }
     }
   }
 }

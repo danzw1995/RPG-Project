@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2850218524937226495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: eeb7bbdf-0d4e-4670-846f-e22d34e3b749
+  m_EditorClassIdentifier: 
+  text: you are so funny
+  isPlayerSpeaking: 0
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 488
+    y: 304
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: CompleteQuest
 --- !u!114 &-2635393609445275462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18,12 +41,12 @@ MonoBehaviour:
   - 95c4ab2d-cbdc-43dc-913a-ebb6abd0a67b
   rect:
     serializedVersion: 2
-    x: 227
-    y: 116
+    x: 241
+    y: 77
     width: 200
     height: 200
-  onEnterAction: 2222
-  onExitAction: 3333
+  onEnterAction: 
+  onExitAction: 
 --- !u!114 &-2618987813791071122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,14 +63,15 @@ MonoBehaviour:
   isPlayerSpeaking: 0
   children:
   - 8f2f9c46-927b-4a2f-aa86-3ad58b336b15
+  - 06821d44-b285-443f-be05-2e47c8480f9c
   rect:
     serializedVersion: 2
-    x: -13
-    y: 130
+    x: -9
+    y: 144
     width: 200
     height: 200
-  onEnterAction: I Enter
-  onExitAction: I leave
+  onEnterAction: 
+  onExitAction: 
 --- !u!114 &-888326065324651190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +116,8 @@ MonoBehaviour:
   - {fileID: -888326065324651190}
   - {fileID: 3602080534613414101}
   - {fileID: 5146847017193757890}
+  - {fileID: 4632082707151353704}
+  - {fileID: -2850218524937226495}
   childNodeOffset: {x: 300, y: 0}
 --- !u!114 &3602080534613414101
 MonoBehaviour:
@@ -111,8 +137,32 @@ MonoBehaviour:
   - dfb00e54-c78b-435c-ad85-f08d4a2efcc3
   rect:
     serializedVersion: 2
-    x: 1240
-    y: 61
+    x: 1254
+    y: 60
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &4632082707151353704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 06821d44-b285-443f-be05-2e47c8480f9c
+  m_EditorClassIdentifier: 
+  text: Suprise!
+  isPlayerSpeaking: 1
+  children:
+  - eeb7bbdf-0d4e-4670-846f-e22d34e3b749
+  rect:
+    serializedVersion: 2
+    x: 246
+    y: 300
     width: 200
     height: 200
   onEnterAction: 
@@ -134,8 +184,8 @@ MonoBehaviour:
   children: []
   rect:
     serializedVersion: 2
-    x: 1540
-    y: 61
+    x: 1541
+    y: 62
     width: 200
     height: 200
   onEnterAction: 
@@ -182,8 +232,8 @@ MonoBehaviour:
   - 55bc2bff-9411-40b0-8ae7-0eb3cc5fbf2e
   rect:
     serializedVersion: 2
-    x: 449
-    y: 94
+    x: 488
+    y: 69
     width: 200
     height: 200
   onEnterAction: 
