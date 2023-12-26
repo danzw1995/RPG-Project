@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using RPG.Core;
 using UnityEngine;
 
 
@@ -62,7 +63,7 @@ namespace RPG.Dialogue
 
     public void Next()
     {
-      int playerResponseNum = currentDialogue.GetPlayerChildren(currentNode).Count();
+      int playerResponseNum = FilterConditionNode(currentDialogue.GetPlayerChildren(currentNode)).Count();
       if (playerResponseNum > 0)
       {
         isChoosing = true;
@@ -73,12 +74,28 @@ namespace RPG.Dialogue
 
       isChoosing = false;
 
-      DialogueNode[] children = currentDialogue.GetAIChildren(currentNode).ToArray();
+      DialogueNode[] children = FilterConditionNode(currentDialogue.GetAIChildren(currentNode)).ToArray();
       TriggerOnExitAction();
       currentNode = children[0];
       TriggerOnEnterAction();
       OnConversationUpdated();
 
+    }
+
+    public IEnumerable<DialogueNode> FilterConditionNode(IEnumerable<DialogueNode> dialogueNodes)
+    {
+      foreach (var node in dialogueNodes)
+      {
+        if (node.CheckCondition(GetEvaluators()))
+        {
+          yield return node;
+        }
+      }
+    }
+
+    private IEnumerable<IPredicateEvaluator> GetEvaluators()
+    {
+      return GetComponents<IPredicateEvaluator>();
     }
 
     public bool HasNext()

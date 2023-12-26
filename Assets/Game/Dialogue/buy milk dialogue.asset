@@ -16,14 +16,45 @@ MonoBehaviour:
   isPlayerSpeaking: 0
   children:
   - cb3f3e3f-327e-4199-9d40-ba28b6325c03
+  - 9e6353c5-c7b6-4614-ad75-9885f530e820
+  - 343a6c96-22ca-4f45-a853-a604e1b9e780
   rect:
     serializedVersion: 2
-    x: -4
-    y: 79
+    x: -21
+    y: 82
     width: 200
     height: 200
   onEnterAction: 
   onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &-5051605571791908904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 3e215b71-3871-496a-8e9f-4250ce292957
+  m_EditorClassIdentifier: 
+  text: bye
+  isPlayerSpeaking: 0
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 511
+    y: 308
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
 --- !u!114 &-4850030603437857179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,6 +78,9 @@ MonoBehaviour:
     height: 200
   onEnterAction: 
   onExitAction: GiveQuest
+  condition:
+    predicate: 
+    parameters: []
 --- !u!114 &-1371810818465395342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +105,37 @@ MonoBehaviour:
     height: 200
   onEnterAction: 
   onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &-1144109920668775586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 9e6353c5-c7b6-4614-ad75-9885f530e820
+  m_EditorClassIdentifier: 
+  text: No way.
+  isPlayerSpeaking: 1
+  children:
+  - 3e215b71-3871-496a-8e9f-4250ce292957
+  rect:
+    serializedVersion: 2
+    x: 249
+    y: 311
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: HasQuest
+    parameters:
+    - Can you help me
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +154,10 @@ MonoBehaviour:
   - {fileID: 1959934717028471807}
   - {fileID: 4723052043848716081}
   - {fileID: -4850030603437857179}
+  - {fileID: -1144109920668775586}
+  - {fileID: -5051605571791908904}
+  - {fileID: 8136817709069441190}
+  - {fileID: 5617337143287364725}
   childNodeOffset: {x: 300, y: 0}
 --- !u!114 &1959934717028471807
 MonoBehaviour:
@@ -108,12 +177,15 @@ MonoBehaviour:
   - 8fc0d18e-10b4-43f2-aeb7-0e247572e014
   rect:
     serializedVersion: 2
-    x: 500
+    x: 499
     y: 100
     width: 200
     height: 200
   onEnterAction: 
   onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
 --- !u!114 &4723052043848716081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +210,60 @@ MonoBehaviour:
     height: 200
   onEnterAction: 
   onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &5617337143287364725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 067a6620-aa85-468c-b096-8de623f7aea4
+  m_EditorClassIdentifier: 
+  text: ----
+  isPlayerSpeaking: 0
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 572
+    y: 527
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &8136817709069441190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56835da383446349ae1d19a69683683, type: 3}
+  m_Name: 343a6c96-22ca-4f45-a853-a604e1b9e780
+  m_EditorClassIdentifier: 
+  text: hhhh
+  isPlayerSpeaking: 1
+  children:
+  - 067a6620-aa85-468c-b096-8de623f7aea4
+  rect:
+    serializedVersion: 2
+    x: 272
+    y: 527
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: HasInventoryItem
+    parameters:
+    - 3cf3b779-5671-47bf-8442-040a88244ccc
