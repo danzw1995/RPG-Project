@@ -10,5 +10,7 @@ namespace RPG.Control
     FullPickup,
 
     Dialogue,
+
+    Shop
   }
 }
