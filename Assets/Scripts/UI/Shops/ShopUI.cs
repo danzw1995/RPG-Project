@@ -26,6 +26,10 @@ namespace RPG.UI.Shops
     }
     private void ActiveShopChange()
     {
+      if (currentShop != null)
+      {
+        currentShop.onChange -= UpdateUI;
+      }
       currentShop = shopper.GetActiveShop();
 
       bool flag = currentShop != null;
@@ -34,6 +38,7 @@ namespace RPG.UI.Shops
       if (flag)
       {
         UpdateUI();
+        currentShop.onChange += UpdateUI;
       }
     }
 
@@ -48,7 +53,7 @@ namespace RPG.UI.Shops
       foreach (ShopItem shopItem in currentShop.GetFilteredItems())
       {
         GameObject shopItemInstance = Instantiate(rowPrefab, contentTransform);
-        shopItemInstance.GetComponent<RowUI>().SetUp(shopItem);
+        shopItemInstance.GetComponent<RowUI>().SetUp(currentShop, shopItem);
       }
 
     }
@@ -56,6 +61,11 @@ namespace RPG.UI.Shops
     public void OnClose()
     {
       shopper.SetActiveShop(null);
+    }
+
+    public void ConfirmTransaction()
+    {
+      currentShop.ConfirmTransaction();
     }
   }
 
