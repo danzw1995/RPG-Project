@@ -16,6 +16,7 @@ MonoBehaviour:
   contentTransform: {fileID: 6416733357511232578}
   rowPrefab: {fileID: 8154619373601025780, guid: 0fdd8818df7693849b26c3242c306363,
     type: 3}
+  totalField: {fileID: 9145402848645673800}
 --- !u!1 &7658265978218128907
 GameObject:
   m_ObjectHideFlags: 0
@@ -51,7 +52,7 @@ RectTransform:
   - {fileID: 5467500276683562439}
   - {fileID: 7217751388463689854}
   m_Father: {fileID: 6485999793052832994}
-  m_RootOrder: 4
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -335,6 +336,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 920409234010648186, guid: 540bc1251bd36e74baa4209cb2a06faf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 920409234010648186, guid: 540bc1251bd36e74baa4209cb2a06faf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 84.4209
+      objectReference: {fileID: 0}
+    - target: {fileID: 920409234010648186, guid: 540bc1251bd36e74baa4209cb2a06faf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5971280559397754516, guid: 540bc1251bd36e74baa4209cb2a06faf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -449,6 +465,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714005584150355099, guid: 540bc1251bd36e74baa4209cb2a06faf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540bc1251bd36e74baa4209cb2a06faf, type: 3}
@@ -1974,7 +1995,7 @@ PrefabInstance:
     - target: {fileID: 1463028273051203397, guid: 038f88f2c477326408c1c37878f9f29f,
         type: 3}
       propertyPath: m_Name
-      value: Body Text
+      value: Total Price
       objectReference: {fileID: 0}
     - target: {fileID: 3370714831962062401, guid: 038f88f2c477326408c1c37878f9f29f,
         type: 3}
@@ -2098,6 +2119,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 038f88f2c477326408c1c37878f9f29f, type: 3}
+--- !u!114 &9145402848645673800 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3370714831962062401, guid: 038f88f2c477326408c1c37878f9f29f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5777502768803859721}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5927686572419797018
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using GameDevTV.Inventories;
 using RPG.Control;
+using RPG.Inventories;
 using UnityEngine;
 
 
@@ -39,6 +40,11 @@ namespace RPG.Shops
     }
     public IEnumerable<ShopItem> GetFilteredItems()
     {
+      return GetAllItems();
+    }
+
+    private IEnumerable<ShopItem> GetAllItems()
+    {
       foreach (StockItemConfig config in stockItemConfigs)
       {
         float price = config.item.GetPrice() * (1 - config.buyingDiscountPercentage / 100);
@@ -68,18 +74,27 @@ namespace RPG.Shops
     public void ConfirmTransaction()
     {
       Inventory shopperInventory = currentShopper.GetComponent<Inventory>();
-      if (shopperInventory == null) return;
+      Purse shopperPurse = currentShopper.GetComponent<Purse>();
+      if (shopperInventory == null || shopperPurse == null) return;
 
-      var transactionSnapShot = new Dictionary<InventoryItem, int>(transaction);
 
-      foreach (InventoryItem item in transactionSnapShot.Keys)
+      foreach (ShopItem item in GetAllItems())
       {
-        for (int i = 0; i < transactionSnapShot[item]; i++)
+        int quantity = item.GetQuantityInTransaction();
+        float price = item.GetPrice();
+
+        for (int i = 0; i < quantity; i++)
         {
-          bool success = shopperInventory.AddToFirstEmptySlot(item, 1);
+          if (shopperPurse.GetBalance() < price)
+          {
+            break;
+          }
+
+          bool success = shopperInventory.AddToFirstEmptySlot(item.GetItem(), 1);
           if (success)
           {
-            AddToTransaction(item, -1);
+            AddToTransaction(item.GetItem(), -1);
+            shopperPurse.UpdateBalance(-price);
           }
         }
       }
@@ -87,7 +102,12 @@ namespace RPG.Shops
 
     public float TransactionTotal()
     {
-      return 0;
+      float total = 0;
+      foreach (ShopItem shopItem in GetAllItems())
+      {
+        total += shopItem.GetPrice() * shopItem.GetQuantityInTransaction();
+      }
+      return total;
     }
 
     public void AddToTransaction(InventoryItem item, int quantity)

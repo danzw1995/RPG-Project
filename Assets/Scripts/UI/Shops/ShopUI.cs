@@ -12,6 +12,7 @@ namespace RPG.UI.Shops
     [SerializeField] private TextMeshProUGUI shopName = null;
     [SerializeField] private Transform contentTransform = null;
     [SerializeField] private GameObject rowPrefab = null;
+    [SerializeField] private TextMeshProUGUI totalField = null;
     private Shopper shopper = null;
 
     private Shop currentShop = null;
@@ -55,6 +56,8 @@ namespace RPG.UI.Shops
         GameObject shopItemInstance = Instantiate(rowPrefab, contentTransform);
         shopItemInstance.GetComponent<RowUI>().SetUp(currentShop, shopItem);
       }
+
+      totalField.text = $"${currentShop.TransactionTotal():N2}";
 
     }
 
