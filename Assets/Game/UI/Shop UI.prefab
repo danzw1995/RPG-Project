@@ -17,6 +17,7 @@ MonoBehaviour:
   rowPrefab: {fileID: 8154619373601025780, guid: 0fdd8818df7693849b26c3242c306363,
     type: 3}
   totalField: {fileID: 9145402848645673800}
+  confirmButton: {fileID: 1282432765358871008}
 --- !u!1 &7658265978218128907
 GameObject:
   m_ObjectHideFlags: 0
@@ -52,7 +53,7 @@ RectTransform:
   - {fileID: 5467500276683562439}
   - {fileID: 7217751388463689854}
   m_Father: {fileID: 6485999793052832994}
-  m_RootOrder: 9
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -654,6 +655,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7af8ec67a072dae4da08502c4236de3e, type: 3}
+--- !u!114 &1282432765358871008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1890710230229482428, guid: 7af8ec67a072dae4da08502c4236de3e,
+    type: 3}
+  m_PrefabInstance: {fileID: 860534020710066780}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &941807375556829092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3927,7 +3940,7 @@ PrefabInstance:
     - target: {fileID: 2263469873138845227, guid: 7af8ec67a072dae4da08502c4236de3e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2263469873138845227, guid: 7af8ec67a072dae4da08502c4236de3e,
         type: 3}

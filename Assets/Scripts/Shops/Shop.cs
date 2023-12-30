@@ -26,8 +26,17 @@ namespace RPG.Shops
     }
 
     private Dictionary<InventoryItem, int> transaction = new Dictionary<InventoryItem, int>();
+    private Dictionary<InventoryItem, int> stock = new Dictionary<InventoryItem, int>();
 
     private Shopper currentShopper = null;
+
+    private void Awake()
+    {
+      foreach (StockItemConfig config in stockItemConfigs)
+      {
+        stock.Add(config.item, config.initialStock);
+      }
+    }
 
     public string GetShopName()
     {
@@ -50,7 +59,9 @@ namespace RPG.Shops
         float price = config.item.GetPrice() * (1 - config.buyingDiscountPercentage / 100);
         int quantityTransaction;
         transaction.TryGetValue(config.item, out quantityTransaction);
-        yield return new ShopItem(config.item, config.initialStock, price, quantityTransaction);
+
+        int currentStock = stock[config.item];
+        yield return new ShopItem(config.item, currentStock, price, quantityTransaction);
       }
     }
 
@@ -68,8 +79,44 @@ namespace RPG.Shops
 
     public bool CanTransact()
     {
+      if (IsTransactionEmpty()) return false;
+      if (!HasSufficientFunds()) return false;
+      if (!HasInventorySpace()) return false;
+
       return true;
     }
+
+    public bool HasInventorySpace()
+    {
+      Inventory shopperInventory = currentShopper.GetComponent<Inventory>();
+      if (shopperInventory == null) return false;
+
+      List<InventoryItem> flatItems = new List<InventoryItem>();
+
+      foreach (ShopItem item in GetAllItems())
+      {
+        int quantity = item.GetQuantityInTransaction();
+        for (int i = 0; i < quantity; i++)
+        {
+          flatItems.Add(item.GetItem());
+        }
+      }
+
+      return shopperInventory.HasSpaceFor(flatItems);
+    }
+
+    public bool HasSufficientFunds()
+    {
+      Purse shopperPurse = currentShopper.GetComponent<Purse>();
+      if (shopperPurse == null) return false;
+      return shopperPurse.GetBalance() >= TransactionTotal();
+    }
+
+    public bool IsTransactionEmpty()
+    {
+      return transaction.Count == 0;
+    }
+
 
     public void ConfirmTransaction()
     {
@@ -94,9 +141,15 @@ namespace RPG.Shops
           if (success)
           {
             AddToTransaction(item.GetItem(), -1);
+            stock[item.GetItem()]--;
             shopperPurse.UpdateBalance(-price);
           }
         }
+      }
+
+      if (onChange != null)
+      {
+        onChange();
       }
     }
 
@@ -117,11 +170,20 @@ namespace RPG.Shops
         transaction.Add(item, 0);
       }
 
-      transaction[item] += quantity;
-      if (transaction[item] < 0)
+
+      if (transaction[item] + quantity > stock[item])
       {
-        transaction[item] = 0;
+        transaction[item] = stock[item];
       }
+      else
+      {
+        transaction[item] += quantity;
+        if (transaction[item] < 0)
+        {
+          transaction.Remove(item);
+        }
+      }
+
 
       if (onChange != null)
       {
