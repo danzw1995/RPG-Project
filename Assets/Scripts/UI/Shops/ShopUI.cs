@@ -43,6 +43,11 @@ namespace RPG.UI.Shops
       }
       currentShop = shopper.GetActiveShop();
 
+      foreach (FilterButtonUI filterButton in GetComponentsInChildren<FilterButtonUI>())
+      {
+        filterButton.SetShop(currentShop);
+      }
+
       bool flag = currentShop != null;
 
       gameObject.SetActive(flag);
@@ -65,6 +70,11 @@ namespace RPG.UI.Shops
       {
         GameObject shopItemInstance = Instantiate(rowPrefab, contentTransform);
         shopItemInstance.GetComponent<RowUI>().SetUp(currentShop, shopItem);
+      }
+
+      foreach (FilterButtonUI filterButton in GetComponentsInChildren<FilterButtonUI>())
+      {
+        filterButton.UpdateUI();
       }
 
       totalField.text = $"${currentShop.TransactionTotal():N2}";

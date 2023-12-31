@@ -30,6 +30,8 @@ namespace GameDevTV.Inventories
 
     [SerializeField] float price;
 
+    [SerializeField] ItemCategory itemCategory = ItemCategory.None;
+
     // STATE
     static Dictionary<string, InventoryItem> itemLookupCache;
 
@@ -108,6 +110,11 @@ namespace GameDevTV.Inventories
     public float GetPrice()
     {
       return price;
+    }
+
+    public ItemCategory GetItemCategory()
+    {
+      return itemCategory;
     }
 
     // PRIVATE

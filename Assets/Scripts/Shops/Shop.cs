@@ -34,6 +34,8 @@ namespace RPG.Shops
 
     private bool isBuyingMode = true;
 
+    private ItemCategory filter = ItemCategory.None;
+
     private void Awake()
     {
       foreach (StockItemConfig config in stockItemConfigs)
@@ -53,7 +55,14 @@ namespace RPG.Shops
     }
     public IEnumerable<ShopItem> GetFilteredItems()
     {
-      return GetAllItems();
+      foreach (ShopItem shopItem in GetAllItems())
+      {
+        if (filter == ItemCategory.None || filter == shopItem.GetItem().GetItemCategory())
+        {
+          yield return shopItem;
+        }
+      }
+
     }
 
     private IEnumerable<ShopItem> GetAllItems()
@@ -111,12 +120,16 @@ namespace RPG.Shops
 
     public void SelectFilter(ItemCategory category)
     {
-
+      filter = category;
+      if (onChange != null)
+      {
+        onChange();
+      }
     }
 
     public ItemCategory GetFilter()
     {
-      return ItemCategory.None;
+      return filter;
     }
 
     public void SelectMode(bool isBuying)
