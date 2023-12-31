@@ -27,6 +27,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopName: default Shop
+  stockItemConfigs: []
+  sellPercentage: 80
 --- !u!1001 &3939479305819573499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88,6 +90,18 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: bfbe2e8b331e2cc42be1591f949c0e41, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+--- !u!4 &3939479305819972887 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 403948, guid: 679ff741e12a7e740819ede24a7000b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 3939479305819573499}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3939479305820030335 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 461188, guid: 679ff741e12a7e740819ede24a7000b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 3939479305819573499}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8529903054907035559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95,6 +109,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3125957438692005694, guid: 750e3c6876a501e42b5827ec7a3d24d1,
+        type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 2c7272ad808b5a8449f77a375a2c4119,
+        type: 2}
+    - target: {fileID: 3125957438692005694, guid: 750e3c6876a501e42b5827ec7a3d24d1,
+        type: 3}
+      propertyPath: rightHandTransform
+      value: 
+      objectReference: {fileID: 3939479305820030335}
+    - target: {fileID: 3125957438692005694, guid: 750e3c6876a501e42b5827ec7a3d24d1,
+        type: 3}
+      propertyPath: leftHandTransform
+      value: 
+      objectReference: {fileID: 3939479305819972887}
     - target: {fileID: 5401972681186859721, guid: 750e3c6876a501e42b5827ec7a3d24d1,
         type: 3}
       propertyPath: m_Name

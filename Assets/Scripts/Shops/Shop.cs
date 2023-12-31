@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameDevTV.Inventories;
+using GameDevTV.Saving;
 using RPG.Control;
 using RPG.Inventories;
 using RPG.Stats;
@@ -10,7 +11,7 @@ using UnityEngine;
 
 namespace RPG.Shops
 {
-  public class Shop : MonoBehaviour, IRaycastable
+  public class Shop : MonoBehaviour, IRaycastable, ISaveable
   {
     [SerializeField] private string shopName = null;
 
@@ -370,6 +371,26 @@ namespace RPG.Shops
       return stats.GetLevel();
     }
 
+    public object CaptureState()
+    {
+      Dictionary<string, int> stateObject = new Dictionary<string, int>();
+
+      foreach (var pair in stockSold)
+      {
+        stateObject[pair.Key.GetItemID()] = pair.Value;
+      }
+      return stateObject;
+    }
+
+    public void RestoreState(object state)
+    {
+      Dictionary<string, int> stateObject = (Dictionary<string, int>)state;
+      stockSold.Clear();
+      foreach (var pair in stateObject)
+      {
+        stockSold[InventoryItem.GetFromID(pair.Key)] = pair.Value;
+      }
+    }
   }
 
 }
