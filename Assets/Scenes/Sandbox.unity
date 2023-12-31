@@ -8856,7 +8856,7 @@ PrefabInstance:
     - target: {fileID: 4450186542556045293, guid: ce5db9726d9fc0445a31bbc617e64cb1,
         type: 3}
       propertyPath: stockItemConfigs.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4450186542556045293, guid: ce5db9726d9fc0445a31bbc617e64cb1,
         type: 3}
@@ -8877,7 +8877,7 @@ PrefabInstance:
     - target: {fileID: 4450186542556045293, guid: ce5db9726d9fc0445a31bbc617e64cb1,
         type: 3}
       propertyPath: stockItemConfigs.Array.data[0].buyingDiscountPercentage
-      value: 42.9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4450186542556045293, guid: ce5db9726d9fc0445a31bbc617e64cb1,
         type: 3}
@@ -8932,6 +8932,47 @@ PrefabInstance:
         type: 3}
       propertyPath: stockItemConfigs.Array.data[4].initialStock
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450186542556045293, guid: ce5db9726d9fc0445a31bbc617e64cb1,
+        type: 3}
+      propertyPath: stockItemConfigs.Array.data[1].levelToUnlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450186542556045293, guid: ce5db9726d9fc0445a31bbc617e64cb1,
+        type: 3}
+      propertyPath: stockItemConfigs.Array.data[2].levelToUnlock
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450186542556045293, guid: ce5db9726d9fc0445a31bbc617e64cb1,
+        type: 3}
+      propertyPath: stockItemConfigs.Array.data[3].levelToUnlock
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450186542556045293, guid: ce5db9726d9fc0445a31bbc617e64cb1,
+        type: 3}
+      propertyPath: stockItemConfigs.Array.data[4].levelToUnlock
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450186542556045293, guid: ce5db9726d9fc0445a31bbc617e64cb1,
+        type: 3}
+      propertyPath: stockItemConfigs.Array.data[5].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 2757b59451e385043a72a68994f03b00,
+        type: 2}
+    - target: {fileID: 4450186542556045293, guid: ce5db9726d9fc0445a31bbc617e64cb1,
+        type: 3}
+      propertyPath: stockItemConfigs.Array.data[5].initialStock
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450186542556045293, guid: ce5db9726d9fc0445a31bbc617e64cb1,
+        type: 3}
+      propertyPath: stockItemConfigs.Array.data[5].levelToUnlock
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450186542556045293, guid: ce5db9726d9fc0445a31bbc617e64cb1,
+        type: 3}
+      propertyPath: stockItemConfigs.Array.data[5].buyingDiscountPercentage
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8117731293422279291, guid: ce5db9726d9fc0445a31bbc617e64cb1,
         type: 3}
@@ -9948,7 +9989,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874861664}
-  m_LocalRotation: {x: 0.15534082, y: -0.06980495, z: 0.011004998, w: 0.9853301}
+  m_LocalRotation: {x: 0.15534082, y: -0.06980495, z: 0.011004999, w: 0.9853301}
   m_LocalPosition: {x: 2.15, y: 4.69, z: -2.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -14778,7 +14819,7 @@ PrefabInstance:
     - target: {fileID: 5263524460118599961, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -570.746
+      value: -567.5889
       objectReference: {fileID: 0}
     - target: {fileID: 5263524460118599961, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
