@@ -19,13 +19,13 @@ namespace RPG.Abilities.Targeting
     [SerializeField] private Transform summonCirclePrefab = null;
 
     private Transform summonCircle;
-    public override void StartTargeting(GameObject user, Action<IEnumerable<GameObject>> finished)
+    public override void StartTargeting(AbilityData data, Action finished)
     {
-      PlayerController playerController = user.GetComponent<PlayerController>();
-      playerController.StartCoroutine(Targeting(user, playerController, finished));
+      PlayerController playerController = data.GetUser().GetComponent<PlayerController>();
+      playerController.StartCoroutine(Targeting(data, playerController, finished));
     }
 
-    private IEnumerator Targeting(GameObject user, PlayerController playerController, Action<IEnumerable<GameObject>> finished)
+    private IEnumerator Targeting(AbilityData data, PlayerController playerController, Action finished)
     {
       playerController.enabled = false;
       if (summonCircle == null)
@@ -51,7 +51,8 @@ namespace RPG.Abilities.Targeting
             yield return new WaitWhile(() => Input.GetMouseButton(0));
             summonCircle.gameObject.SetActive(false);
             playerController.enabled = true;
-            finished(GetGameObjectsInRadius(raycastHit.point));
+            data.SetTargets(GetGameObjectsInRadius(raycastHit.point));
+            finished();
             yield break;
 
           }

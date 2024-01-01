@@ -17,19 +17,20 @@ namespace RPG.Abilities
 
     public override void Use(GameObject user)
     {
-      targetingStrategy.StartTargeting(user, (IEnumerable<GameObject> targets) => TargetAquired(user, targets));
+      AbilityData data = new AbilityData(user);
+      targetingStrategy.StartTargeting(data, () => TargetAquired(data));
     }
 
-    private void TargetAquired(GameObject user, IEnumerable<GameObject> targets)
+    private void TargetAquired(AbilityData data)
     {
       foreach (FilterStrategy filterStrategy in filterStrategies)
       {
-        targets = filterStrategy.FilterTarget(targets);
+        data.SetTargets(filterStrategy.FilterTarget(data.GetTargets()));
       }
 
       foreach (EffectStrategy effectStrategy in effectStrategies)
       {
-        effectStrategy.StartEffect(user, targets, EffectFinished);
+        effectStrategy.StartEffect(data, EffectFinished);
       }
     }
 
