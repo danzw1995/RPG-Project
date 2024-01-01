@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using GameDevTV.Inventories;
 using RPG.Attributes;
+using RPG.Core;
 using UnityEngine;
 
 
@@ -36,11 +37,15 @@ namespace RPG.Abilities
       }
 
       AbilityData data = new AbilityData(user);
+
+      ActionScheduler actionScheduler = user.GetComponent<ActionScheduler>();
+      actionScheduler.StartAction(data);
       targetingStrategy.StartTargeting(data, () => TargetAquired(data));
     }
 
     private void TargetAquired(AbilityData data)
     {
+      if (data.IsCanceled()) return;
       GameObject user = data.GetUser();
       CooldownStore cooldownStore = user.GetComponent<CooldownStore>();
       Mana mana = user.GetComponent<Mana>();

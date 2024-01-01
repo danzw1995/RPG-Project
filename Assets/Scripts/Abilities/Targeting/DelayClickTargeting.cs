@@ -37,7 +37,7 @@ namespace RPG.Abilities.Targeting
       {
         summonCircle.gameObject.SetActive(true);
       }
-      while (true)
+      while (!data.IsCanceled())
       {
         Cursor.SetCursor(cursorType, cursorHotspot, CursorMode.Auto);
 
@@ -49,17 +49,18 @@ namespace RPG.Abilities.Targeting
           if (Input.GetMouseButtonDown(0))
           {
             yield return new WaitWhile(() => Input.GetMouseButton(0));
-            summonCircle.gameObject.SetActive(false);
-            playerController.enabled = true;
             data.SetTargetPoint(raycastHit.point);
             data.SetTargets(GetGameObjectsInRadius(raycastHit.point));
-            finished();
-            yield break;
+            break;
 
           }
         }
         yield return null;
       }
+      summonCircle.gameObject.SetActive(false);
+      playerController.enabled = true;
+      finished();
+
     }
 
     private IEnumerable<GameObject> GetGameObjectsInRadius(Vector2 point)
