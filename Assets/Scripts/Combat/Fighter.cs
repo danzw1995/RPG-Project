@@ -184,5 +184,10 @@ namespace RPG.Combat
       WeaponConfig weapon = UnityEngine.Resources.Load<WeaponConfig>(weaponName);
       EquipWeapon(weapon);
     }
+
+    public Transform GetHandTransform(bool isRightHand)
+    {
+      return isRightHand ? rightHandTransform : leftHandTransform;
+    }
   }
 }
