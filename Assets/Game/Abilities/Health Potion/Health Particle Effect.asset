@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6ff586db4d16134aa29945ce725f6fc, type: 3}
-  m_Name: Tag Filter
+  m_Script: {fileID: 11500000, guid: a9dd6a4a67e45a9498b5d980cdc2c2ee, type: 3}
+  m_Name: Health Particle Effect
   m_EditorClassIdentifier: 
-  tagName: Enemy
+  targetPrefab: {fileID: 4829491530746772, guid: 7098bdbdcde165049872f566c6a00e5f,
+    type: 3}
+  delayToDestroy: 5

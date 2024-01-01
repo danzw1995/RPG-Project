@@ -16,3 +16,4 @@ MonoBehaviour:
   delayEffects:
   - {fileID: 11400000, guid: 2fcf363b738a12043a1b7bfd2171e342, type: 2}
   - {fileID: 11400000, guid: 16089e377d2ff7b468960f32bd228ea6, type: 2}
+  abortIfCanceled: 0
