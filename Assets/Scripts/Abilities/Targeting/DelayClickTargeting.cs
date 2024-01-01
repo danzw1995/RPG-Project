@@ -51,6 +51,7 @@ namespace RPG.Abilities.Targeting
             yield return new WaitWhile(() => Input.GetMouseButton(0));
             summonCircle.gameObject.SetActive(false);
             playerController.enabled = true;
+            data.SetTargetPoint(raycastHit.point);
             data.SetTargets(GetGameObjectsInRadius(raycastHit.point));
             finished();
             yield break;

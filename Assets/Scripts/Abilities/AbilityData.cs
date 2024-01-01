@@ -1,6 +1,7 @@
 
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace RPG.Abilities
   {
     private GameObject user;
     private IEnumerable<GameObject> targets;
+
+    private Vector3 targetPoint;
 
     public AbilityData(GameObject user)
     {
@@ -37,5 +40,19 @@ namespace RPG.Abilities
       targets = enumerable;
     }
 
+    public Vector3 GetTargetPoint()
+    {
+      return targetPoint;
+    }
+
+    public void SetTargetPoint(Vector3 point)
+    {
+      targetPoint = point;
+    }
+
+    public void StartCoroutine(IEnumerator coroutine)
+    {
+      user.GetComponent<MonoBehaviour>().StartCoroutine(coroutine);
+    }
   }
 }
