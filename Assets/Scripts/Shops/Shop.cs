@@ -18,6 +18,8 @@ namespace RPG.Shops
     [SerializeField] private StockItemConfig[] stockItemConfigs;
 
     [SerializeField] private float sellPercentage = 80f;
+
+    [SerializeField] private float maxBarterDiscountPercentage = 10f;
     public Action onChange;
 
     [Serializable]
@@ -111,7 +113,7 @@ namespace RPG.Shops
         {
           if (!prices.ContainsKey(config.item))
           {
-            prices[config.item] = config.item.GetPrice();
+            prices[config.item] = config.item.GetPrice() * GetBarterDiscount();
 
           }
           prices[config.item] *= 1 - config.buyingDiscountPercentage / 100;
@@ -123,6 +125,13 @@ namespace RPG.Shops
 
       }
       return prices;
+    }
+
+    private float GetBarterDiscount()
+    {
+      float discount = currentShopper.GetComponent<BaseStats>().GetStat(Stat.buyingDiscountPercentage);
+
+      return 1 - Math.Min(discount, maxBarterDiscountPercentage) / 100;
     }
 
     private IEnumerable<StockItemConfig> GetAvailabilityConfigs()

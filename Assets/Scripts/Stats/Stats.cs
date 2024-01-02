@@ -9,5 +9,6 @@ namespace RPG.Stats
     Mana,
     ManaRegenerate,
     TotalTraitPoints,
+    buyingDiscountPercentage,
   }
 }
