@@ -9,8 +9,6 @@ namespace RPG.Stats
     private Dictionary<Trait, int> assignPoints = new Dictionary<Trait, int>();
     private Dictionary<Trait, int> stagedPoints = new Dictionary<Trait, int>();
 
-    private int unassignPoints = 10;
-
     public int GetProposedPoints(Trait trait)
     {
       return GetPoints(trait) + GetStagedPoints(trait);
@@ -30,19 +28,38 @@ namespace RPG.Stats
     {
 
       stagedPoints[trait] = GetStagedPoints(trait) + point;
-      unassignPoints -= point;
     }
 
     public bool CanAssignPoints(Trait trait, int point)
     {
       if (GetStagedPoints(trait) + point < 0) return false;
-      if (point > unassignPoints) return false;
+      if (point > GetUnassignPoints()) return false;
       return true;
     }
 
     public int GetUnassignPoints()
     {
-      return unassignPoints;
+      return GetAssignablePoints() - GetTotalProposedPoints();
+    }
+
+    public int GetTotalProposedPoints()
+    {
+      int total = 0;
+      foreach (int point in assignPoints.Values)
+      {
+        total += point;
+      }
+      foreach (int point in stagedPoints.Values)
+      {
+        total += point;
+      }
+
+      return total;
+    }
+
+    public int GetAssignablePoints()
+    {
+      return (int)GetComponent<BaseStats>().GetStat(Stat.TotalTraitPoints);
     }
 
     public bool IsEmptyStagePoints()
