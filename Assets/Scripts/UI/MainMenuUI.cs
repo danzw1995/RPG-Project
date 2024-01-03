@@ -20,11 +20,6 @@ namespace RPG.UI
       savingWrapper = new LazyValue<SavingWrapper>(GetSavingWrapper);
     }
 
-    private void Start()
-    {
-      continueButton.onClick.AddListener(ContinueGame);
-    }
-
     public SavingWrapper GetSavingWrapper()
     {
       return FindObjectOfType<SavingWrapper>();
