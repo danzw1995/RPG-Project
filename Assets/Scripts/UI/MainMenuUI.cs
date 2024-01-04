@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GameDevTV.Utils;
 using RPG.SceneManagement;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 namespace RPG.UI
@@ -12,6 +13,8 @@ namespace RPG.UI
     [SerializeField] private Button newGameButton = null;
     [SerializeField] private Button loadGameButton = null;
     [SerializeField] private Button quitButton = null;
+
+    [SerializeField] private TMP_InputField newGameNameInput = null;
 
     private LazyValue<SavingWrapper> savingWrapper;
 
@@ -28,6 +31,11 @@ namespace RPG.UI
     public void ContinueGame()
     {
       savingWrapper.value.ContinueGame();
+    }
+
+    public void NewGame()
+    {
+      savingWrapper.value.NewGame(newGameNameInput.text);
     }
   }
 
