@@ -2951,6 +2951,41 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1230326175663293101, guid: 92b94100d7719ac43b403c20f3e8b6b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230326175663293101, guid: 92b94100d7719ac43b403c20f3e8b6b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230326175663293101, guid: 92b94100d7719ac43b403c20f3e8b6b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230326175663293101, guid: 92b94100d7719ac43b403c20f3e8b6b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 254780667}
+    - target: {fileID: 1230326175663293101, guid: 92b94100d7719ac43b403c20f3e8b6b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RPG.UI.MainMenuUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230326175663293101, guid: 92b94100d7719ac43b403c20f3e8b6b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230326175663293101, guid: 92b94100d7719ac43b403c20f3e8b6b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1408168233358182667, guid: 92b94100d7719ac43b403c20f3e8b6b3,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -3863,6 +3898,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92b94100d7719ac43b403c20f3e8b6b3, type: 3}
+--- !u!114 &254780667 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3091208569687664737, guid: 92b94100d7719ac43b403c20f3e8b6b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 254780666}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979652ebaa383f945946b17bf494a9f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &259888847
 PrefabInstance:
   m_ObjectHideFlags: 0

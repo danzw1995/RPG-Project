@@ -37,6 +37,15 @@ namespace RPG.UI
     {
       savingWrapper.value.NewGame(newGameNameInput.text);
     }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+      UnityEditor.EditorApplication.isPlaying = false;
+#else
+      Application.Quit();
+#endif
+    }
   }
 
 }
