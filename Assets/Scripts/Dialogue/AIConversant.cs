@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using RPG.Attributes;
 using RPG.Control;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ namespace RPG.Dialogue
       {
         return false;
       }
+      Health health = GetComponent<Health>();
+      if (health && health.IsDead()) return false;
       if (Input.GetMouseButton(0))
       {
         callingController.GetComponent<PlayerConversant>().StartDialogue(this, dialogue);
