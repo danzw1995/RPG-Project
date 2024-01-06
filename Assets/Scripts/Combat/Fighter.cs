@@ -11,7 +11,7 @@ using GameDevTV.Inventories;
 
 namespace RPG.Combat
 {
-  public class Fighter : MonoBehaviour, IAction, ISaveable
+  public class Fighter : MonoBehaviour, IAction
   {
     [SerializeField] float timeBetweenAttacks = 1f;
     [SerializeField] Transform rightHandTransform = null;
@@ -153,6 +153,9 @@ namespace RPG.Combat
 
       float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
 
+      float defence = target.GetComponent<BaseStats>().GetStat(Stat.Defence);
+      damage /= 1 + defence / damage;
+
       if (currentWeapon.value != null)
       {
         currentWeapon.value.OnHit();
@@ -207,18 +210,6 @@ namespace RPG.Combat
     {
       GetComponent<Animator>().ResetTrigger("attack");
       GetComponent<Animator>().SetTrigger("stopAttack");
-    }
-
-    public object CaptureState()
-    {
-      return currentWeaponConfig.name;
-    }
-
-    public void RestoreState(object state)
-    {
-      string weaponName = (string)state;
-      WeaponConfig weapon = UnityEngine.Resources.Load<WeaponConfig>(weaponName);
-      EquipWeapon(weapon);
     }
 
     public Transform GetHandTransform(bool isRightHand)
