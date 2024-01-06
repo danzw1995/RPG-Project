@@ -35,7 +35,7 @@ namespace RPG.UI
 
     private void ActiveUI()
     {
-      Time.timeScale = 1;
+      Time.timeScale = 15;
       playerController.enabled = true;
     }
 

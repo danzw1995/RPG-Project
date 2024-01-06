@@ -17,6 +17,7 @@ namespace RPG.Combat
     [SerializeField] Transform rightHandTransform = null;
     [SerializeField] Transform leftHandTransform = null;
     [SerializeField] WeaponConfig defaultWeapon = null;
+    [SerializeField] private float autoAttackRange = 4f;
 
     Health target;
     Equipment equipment;
@@ -50,7 +51,12 @@ namespace RPG.Combat
       timeSinceLastAttack += Time.deltaTime;
 
       if (target == null) return;
-      if (target.IsDead()) return;
+      if (target.IsDead())
+      {
+        target = FindNewTargetOfRange();
+        return;
+
+      }
 
       if (!GetIsInRange(target.transform))
       {
@@ -61,6 +67,36 @@ namespace RPG.Combat
         GetComponent<Mover>().Cancel();
         AttackBehaviour();
       }
+    }
+
+    private Health FindNewTargetOfRange()
+    {
+
+      Health best = null;
+      float bestDistance = Mathf.Infinity;
+      foreach (Health target in GetAllTargets())
+      {
+        float distance = Vector3.Distance(target.transform.position, transform.position);
+        if (distance < bestDistance)
+        {
+          best = target;
+          bestDistance = distance;
+        }
+      }
+      return best;
+    }
+
+    private IEnumerable<Health> GetAllTargets()
+    {
+      foreach (RaycastHit hit in Physics.SphereCastAll(transform.position, autoAttackRange, Vector3.up))
+      {
+        Health health = hit.transform.GetComponent<Health>();
+        if (health == null) continue;
+        if (health.IsDead()) continue;
+        if (health.gameObject == gameObject) continue;
+        yield return health;
+      }
+
     }
 
     public void EquipWeapon(WeaponConfig weapon)
