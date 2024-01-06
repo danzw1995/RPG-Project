@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using GameDevTV.Saving;
+using GameDevTV.Utils;
 using UnityEngine;
 
 namespace RPG.Stats
 {
-  public class TraitStore : MonoBehaviour, IModifierProvider, ISaveable
+  public class TraitStore : MonoBehaviour, IModifierProvider, ISaveable, IPredicateEvaluator
   {
     private Dictionary<Trait, int> assignPoints = new Dictionary<Trait, int>();
     private Dictionary<Trait, int> stagedPoints = new Dictionary<Trait, int>();
@@ -152,6 +153,19 @@ namespace RPG.Stats
     public void RestoreState(object state)
     {
       assignPoints = new Dictionary<Trait, int>((IDictionary<Trait, int>)state);
+    }
+
+    public bool? Evaluate(string predicate, string[] parameters)
+    {
+      if (predicate == "MinimumTrait")
+      {
+        if (Enum.TryParse(parameters[0], out Trait trait))
+        {
+          return GetPoints(trait) >= Int32.Parse(parameters[1]);
+        }
+      }
+
+      return null;
     }
   }
 }
